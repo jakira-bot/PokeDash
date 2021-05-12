@@ -1,4 +1,4 @@
 # PokeDash
 Final Project for Intro to Front-End Web Development
 
-Team Members: Darian Hutchinson, 
+Team Members: Darian Hutchinson, Jerry Smedley
