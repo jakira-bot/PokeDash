@@ -20,7 +20,7 @@ export default function App() {
               <Link to="/map">Map</Link>
             </li>
             <li className="nav-link">
-              <Link to="/teamBuilder">Team-Builder</Link>
+              <Link to="/Team-Builder">Team-Builder</Link>
             </li>
             <li className="nav-link">
               <Link to="/items">Items</Link>
@@ -34,7 +34,7 @@ export default function App() {
           <Route path="/map">
             <Map />
           </Route>
-          <Route path="/teamBuilder">
+          <Route path="/Team-Builder">
             <TeamBuilder />
           </Route>
           <Route path="/items">
