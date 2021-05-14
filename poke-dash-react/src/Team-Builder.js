@@ -49,7 +49,7 @@ function TeamBuilder() {
     return (
       <>
         <h1 onLoad={handleChange}>Team-Builder</h1>
-        {pokemon && (
+        {item && (
           <div className="teamContainer">
             <div className="teamElement col">
               <img className="pokeball" src={item.sprites.default} alt={item.name}></img>
@@ -62,6 +62,7 @@ function TeamBuilder() {
             </div>
           </div>
         )}
+        {item && (
           <div className="teamContainer">
             <div className="teamElement col lowerTeam">
               <img className="pokeball" src={item.sprites.default} alt={item.name}></img>
@@ -73,6 +74,7 @@ function TeamBuilder() {
               <img className="pokeball" src={item.sprites.default} alt={item.name}></img>
             </div>
           </div>
+        )}
       </>
     );
   }
