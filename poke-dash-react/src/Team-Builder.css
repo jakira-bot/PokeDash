@@ -4,9 +4,84 @@ h1 {
 
 .teamContainer {
     background-color: antiquewhite;
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 15px;
 }
+
+.item {
+    margin-right: 30px;
+}
+
+
+.card-notify-name {
+    position: absolute;
+    left: -10px;
+    top: -20px;
+    background: #f2d900;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px; 
+    color: #000;
+    padding: 5px 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.card-notify-id {
+    position: absolute;
+    right: -10px;
+    top: -20px;
+    background: #ff4444;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;      
+    font-size: 14px;      
+    width: 50px;
+    height: 50px;    
+    padding: 15px 0 0 0;
+}
+
+.card-type-badge {      
+    background: #f2d900;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color: #000;
+    padding: 10px 10px;
+    margin: 5px;
+}
+
+.card:hover {
+    background: #fff;
+    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.card-image {
+    text-align: center;
+}
+
+.card-image-overlay {
+    font-size: 20px;
+    text-align: center;
+        
+}
+
+
+.card-image-overlay span {
+    display: inline-block;  
+}
+
+.sprite {
+    width: 150px;
+    height: 200px;
+}
+
+.pokeSearch {
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+}
+
 
 
 

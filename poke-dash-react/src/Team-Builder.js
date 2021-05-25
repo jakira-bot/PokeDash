@@ -1,6 +1,5 @@
 import './Team-Builder.css';
 import { useEffect, useState} from "react";
-import { render } from 'react-dom';
 
 
 export default function TeamBuilder(props) {
@@ -36,6 +35,7 @@ export default function TeamBuilder(props) {
 
   useEffect(() => {
     getPokemon(count);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
   async function getPokemon(num) {
@@ -88,7 +88,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName1(pokemonNames[i]);
-        setSprite1(pokemon[i].data.sprites.front_default)
+        setSprite1(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -126,7 +126,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName2(pokemonNames[i]);
-        setSprite2(pokemon[i].data.sprites.front_default)
+        setSprite2(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -164,7 +164,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName3(pokemonNames[i]);
-        setSprite3(pokemon[i].data.sprites.front_default)
+        setSprite3(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -202,7 +202,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName4(pokemonNames[i]);
-        setSprite4(pokemon[i].data.sprites.front_default)
+        setSprite4(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -240,7 +240,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName5(pokemonNames[i]);
-        setSprite5(pokemon[i].data.sprites.front_default)
+        setSprite5(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -278,7 +278,7 @@ export default function TeamBuilder(props) {
       if(event.target.value.toUpperCase() === pokemonNames[i].toUpperCase()){
         console.log(pokemonNames[i])
         setName6(pokemonNames[i]);
-        setSprite6(pokemon[i].data.sprites.front_default)
+        setSprite6(pokemon[i].data.sprites.other.dream_world.front_default)
         let firstType = pokemon[i].data.types[0].type.name;
         let secondType = "";
         let thirdType = "";
@@ -299,132 +299,128 @@ export default function TeamBuilder(props) {
     }
   }
 
-
-  
-  
   return (
-    <div className="teamContainer">
-      <h1>Team Builder</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member1}></input>
-        <div>
-          Name: {name1}<br></br>
-          <img src={sprite1} alt={name1} /><br></br>
-          Type: {type1.firstType} {type1.secondType} {type1.thirdType}
+    <div>
+      <div>
+        <h1>Team Builder</h1>
+      </div>
+      <div className="teamContainer row">
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name1}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite1} alt={name1} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type1.firstType}</span>
+              <span className="card-type-badge">{type1.secondType}</span>
+              <span className="card-type-badge">{type1.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member1}></input>
+            </div>
+          </form>
         </div>
-      </form>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member2}></input>
-        <div>
-          Name: {name2}<br></br>
-          <img src={sprite2} alt={name2} /><br></br>
-          Type: {type2.firstType} {type2.secondType} {type2.thirdType}
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name2}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite2} alt={name2} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type2.firstType}</span>
+              <span className="card-type-badge">{type2.secondType}</span>
+              <span className="card-type-badge">{type2.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member2}></input>
+            </div>
+          </form>
         </div>
-      </form>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member3}></input>
-        <div>
-          Name: {name3}<br></br>
-          <img src={sprite3} alt={name3} /><br></br>
-          Type: {type3.firstType} {type3.secondType} {type3.thirdType}
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name3}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite3} alt={name3} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type3.firstType}</span>
+              <span className="card-type-badge">{type3.secondType}</span>
+              <span className="card-type-badge">{type3.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member3}></input>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member4}></input>
-        <div>
-          Name: {name4}<br></br>
-          <img src={sprite4} alt={name4} /><br></br>
-          Type: {type4.firstType} {type4.secondType} {type4.thirdType}
+      <div className="teamContainer row">
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name4}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite4} alt={name4} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type4.firstType}</span>
+              <span className="card-type-badge">{type4.secondType}</span>
+              <span className="card-type-badge">{type4.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member4}></input>
+            </div>
+          </form>
         </div>
-      </form>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member5}></input>
-        <div>
-          Name: {name5}<br></br>
-          <img src={sprite5} alt={name4} /><br></br>
-          Type: {type5.firstType} {type5.secondType} {type5.thirdType}
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name5}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite5} alt={name5} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type5.firstType}</span>
+              <span className="card-type-badge">{type5.secondType}</span>
+              <span className="card-type-badge">{type5.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member5}></input>
+            </div>
+          </form>
         </div>
-      </form>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="pokeSearch">Lookup Pokemon:</label>
-        <input type="text" className="pokeSearch" name="pokeSearch" onChange={member6}></input>
-        <div>
-          Name: {name6}<br></br>
-          <img src={sprite6} alt={name6} /><br></br>
-          Type: {type6.firstType} {type6.secondType} {type6.thirdType}
+        <div className="item col-md-3 card rounded">
+          <form onSubmit={handleSubmit}>
+            <div className="card-image">
+              <span className="card-notify-name">{name6}</span>
+              <span className="card-notify-id">ID</span>
+              <img className="sprite" src={sprite6} alt={name6} /><br></br>
+            </div>
+            <div className="card-image-overlay m-auto">
+              <span className="card-type-badge">{type6.firstType}</span>
+              <span className="card-type-badge">{type6.secondType}</span>
+              <span className="card-type-badge">{type6.thirdType}</span>
+            </div>
+            <div className="pokeSearch">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={member6}></input>
+            </div>
+          </form>
         </div>
-      </form>
-
-
+      </div>
     </div>
   )
 };
-
-  /*function handleMember1(event) {
-    setSearch(event.target.value);
-    setMember1(pokemon.name);
-  }
-
-  function handleChange(event) {
-    console.log(event.target.value);
-    setSearch(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    getPokemon();
-  }
-
-    return (
-      <>
-        <h1>Team-Builder</h1>
-        {pokemon && (
-          <div className="teamContainer">
-            <div className="teamElement col">
-              <form onSubmit={handleSubmit}>
-                <h2>{member1}</h2><br></br>
-                <img src={pokemonNames[1].sprites.front_default} alt={pokemonNames[1].title} /><br></br>
-                <label className="form-label" htmlFor="item">
-                  Search for an item
-                </label>
-                <input type="text" id="item" onChange={handleMember1}/>
-                <input className="btn btn-primary" type="submit" value="search" />
-              </form>
-            </div>
-            <div className="teamElement col">
-              <form onSubmit={handleSubmit}>
-                {pokemonNames[1].name}<br></br>
-                <img src={pokemonNames[1].sprites.front_default} alt={pokemonNames[1].title} /><br></br>
-                <label className="form-label" htmlFor="item">
-                  Search for an item
-                </label>
-                <input type="text" id="item" onChange={handleChange} />
-                <input className="btn btn-primary" type="submit" value="search" />
-              </form>
-            </div>
-            <div className="teamElement col">
-            </div>
-          </div>
-        )}
-          <div className="teamContainer">
-            <div className="teamElement col lowerTeam">
-            </div>
-            <div className="teamElement col lowerTeam">
-            </div>
-            <div className="teamElement col lowerTeam">
-            </div>
-          </div>
-      </>
-    );
-}
-*/
