@@ -6,27 +6,6 @@ h1 {
     background-color: antiquewhite;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.teamElement {
-    display: flex;
-    border: 2px solid black;
-    background-color: rgba(248, 248, 17, 0.836);
-    height: 200px;
-    margin: 4%;
-    width: 50px;
-    justify-content: center;
-    align-items: center;
-    font-size: 300%;
-}
-
-.lowerTeam {
-    margin-top: 0px;
-}
-
-.pokeball {
-    height: 40%;
 }
 
 

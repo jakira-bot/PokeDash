@@ -6,8 +6,31 @@ import Map from "./Map";
 import TeamBuilder from "./Team-Builder";
 import Items from "./Items";
 import "bootstrap/dist/css/bootstrap.css";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function App() {
+
+  const [pokemon, setPokemon] = useState([]);
+
+  const url = 'https://pokeapi.co/api/v2/pokemon';
+
+  let getPokemon = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
+        //console.log(response.data);
+        setPokemon(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getPokemon(url)
+  }, []);
+
   return (
     <Router>
       <div>
@@ -35,7 +58,7 @@ export default function App() {
             <Map />
           </Route>
           <Route path="/Team-Builder">
-            <TeamBuilder />
+            <TeamBuilder pokemon={pokemon}/>
           </Route>
           <Route path="/items">
             <Items />
