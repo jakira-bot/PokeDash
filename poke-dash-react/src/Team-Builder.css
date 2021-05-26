@@ -2,7 +2,32 @@ h1 {
     text-align: center;
 }
 
-.teamContainer {
+img[src=""],
+img:not([src]){
+  opacity: 0;
+}
+
+img[src="*"]{
+  opacity: 1;
+}
+
+.sprite {
+    width: 150px;
+    height: 200px;
+}
+
+.mainContainer {
+    display: flex;
+    background-color: antiquewhite;
+    justify-content: center;
+}
+
+.member {
+
+}
+
+
+/*.teamContainer {
     background-color: antiquewhite;
     justify-content: center;
     padding: 15px;
@@ -82,6 +107,6 @@ h1 {
     margin: 10px;
 }
 
-
+*/
 
 
