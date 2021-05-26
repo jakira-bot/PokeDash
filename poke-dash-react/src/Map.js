@@ -98,14 +98,14 @@ export default function Search() {
       {selectedLocation && (
         <div>
           {
-            // selectedLocation.map((selectedLocation) => {
-            //   return (
-            //     <div className='text-center' key={`${selectedLocation.name}`}>
-            //       {selectedLocation.name} - {selectedLocation.url}
-            //     </div>
-            //   )
-            // })
-            areaInfo(selectedLocation)
+            selectedLocation.map((selectedLocation) => {
+              return (
+                <div className='text-center' key={`${selectedLocation.name}`}>
+                  {selectedLocation.name} - {selectedLocation.url}
+                </div>
+              )
+            })
+            //areaInfo(selectedLocation)
           }
         </div>
       )}
