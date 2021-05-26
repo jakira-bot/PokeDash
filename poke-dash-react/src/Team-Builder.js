@@ -227,89 +227,165 @@ export default function TeamBuilder(props) {
     <div>
       <h1>Team Builder</h1>
       <div className="mainContainer">
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member1.name.toUpperCase()}</p>
-          <p>{member1.id}</p>
+
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member1.name.toUpperCase()}</span>
+              <span className="id">{member1.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member1.sprite} alt={member1.name}/><br></br>
           </p>
-          <span>{member1.types[0].toUpperCase()} {member1.types[1].toUpperCase()} {member1.types[2].toUpperCase()} {member1.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember1}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member1.types[0]}>{member1.types[0].toUpperCase()}</span>
+            <span className="type" title={member1.types[1]}>{member1.types[1].toUpperCase()}</span>
+            <span className="type" title={member1.types[2]}>{member1.types[2].toUpperCase()}</span>
+            <span className="type" title={member1.types[3]}>{member1.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember1}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
 
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member2.name.toUpperCase()}</p>
-          <p>{member2.id}</p>
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member2.name.toUpperCase()}</span>
+              <span className="id">{member2.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member2.sprite} alt={member2.name}/><br></br>
           </p>
-          <span>{member2.types[0].toUpperCase()} {member2.types[1].toUpperCase()} {member2.types[2].toUpperCase()} {member2.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember2}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member2.types[0]}>{member2.types[0].toUpperCase()}</span>
+            <span className="type" title={member2.types[1]}>{member2.types[1].toUpperCase()}</span>
+            <span className="type" title={member2.types[2]}>{member2.types[2].toUpperCase()}</span>
+            <span className="type" title={member2.types[3]}>{member2.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember2}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
 
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member3.name.toUpperCase()}</p>
-          <p>{member3.id}</p>
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member3.name.toUpperCase()}</span>
+              <span className="id">{member3.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member3.sprite} alt={member3.name}/><br></br>
           </p>
-          <span>{member3.types[0].toUpperCase()} {member3.types[1].toUpperCase()} {member3.types[2].toUpperCase()} {member3.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember3}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member3.types[0]}>{member3.types[0].toUpperCase()}</span>
+            <span className="type" title={member3.types[1]}>{member3.types[1].toUpperCase()}</span>
+            <span className="type" title={member3.types[2]}>{member3.types[2].toUpperCase()}</span>
+            <span className="type" title={member3.types[3]}>{member3.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember3}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
 
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member4.name.toUpperCase()}</p>
-          <p>{member4.id}</p>
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member4.name.toUpperCase()}</span>
+              <span className="id">{member4.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member4.sprite} alt={member4.name}/><br></br>
           </p>
-          <span>{member4.types[0].toUpperCase()} {member4.types[1].toUpperCase()} {member4.types[2].toUpperCase()} {member4.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember4}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member4.types[0]}>{member4.types[0].toUpperCase()}</span>
+            <span className="type" title={member4.types[1]}>{member4.types[1].toUpperCase()}</span>
+            <span className="type" title={member4.types[2]}>{member4.types[2].toUpperCase()}</span>
+            <span className="type" title={member4.types[3]}>{member4.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember4}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
 
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member5.name.toUpperCase()}</p>
-          <p>{member5.id}</p>
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member5.name.toUpperCase()}</span>
+              <span className="id">{member5.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member5.sprite} alt={member5.name}/><br></br>
           </p>
-          <span>{member5.types[0].toUpperCase()} {member5.types[1].toUpperCase()} {member5.types[2].toUpperCase()} {member5.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember5}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member5.types[0]}>{member5.types[0].toUpperCase()}</span>
+            <span className="type" title={member5.types[1]}>{member5.types[1].toUpperCase()}</span>
+            <span className="type" title={member5.types[2]}>{member5.types[2].toUpperCase()}</span>
+            <span className="type" title={member5.types[3]}>{member5.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember5}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
 
-        <div className="member">
-          <label htmlFor="pokeSearch"></label>
-          <p>{member6.name.toUpperCase()}</p>
-          <p>{member6.id}</p>
+        <div className="card rounded border-3 border-secondary">
+          <div className="card-header border-0 bg-white">
+            <div className="topInfo">
+              <span className="name">{member6.name.toUpperCase()}</span>
+              <span className="id">{member6.id}</span>
+            </div>
+          </div> 
           <p>
             <img className="sprite" src={member6.sprite} alt={member6.name}/><br></br>
           </p>
-          <span>{member6.types[0].toUpperCase()} {member6.types[1].toUpperCase()} {member6.types[2].toUpperCase()} {member6.types[3].toUpperCase()} </span>
-          <div>
-            <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange}></input>
-            <button type="button" onClick={getMember6}>Get Pokemon!</button>
+          <div className="types">
+            <span className="type" title={member6.types[0]}>{member6.types[0].toUpperCase()}</span>
+            <span className="type" title={member6.types[1]}>{member6.types[1].toUpperCase()}</span>
+            <span className="type" title={member6.types[2]}>{member6.types[2].toUpperCase()}</span>
+            <span className="type" title={member6.types[3]}>{member6.types[3].toUpperCase()}</span>
+          </div>
+          <div className="card-footer border-0 bg-white">
+            <div className="searchContainer">
+              <label htmlFor="pokeSearch"></label>
+              <input type="text" className="pokeSearch" name="pokeSearch" onChange={handleChange} autoComplete="off"></input>
+            </div>
+            <button type="button" onClick={getMember6}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+            height="60" width="60"></img></button>
           </div>
         </div>
+
+
+
       </div>
     </div>
   )
