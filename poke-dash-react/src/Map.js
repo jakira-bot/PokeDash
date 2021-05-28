@@ -6,6 +6,7 @@ export default function Search() {
   const [location, setLocation] = useState("");
   //const [selectedLocation, setSelectedLocation] = useState("");
   const [areas, setAreas] = useState("");
+  //const [pokeEncounters, setPokeEncounters] = useState("");
 
   useEffect(() => {
     getRegion();
@@ -13,7 +14,7 @@ export default function Search() {
   }, [search]);
 
   useEffect(() => {
-    getLocation();
+    getAreas();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
@@ -28,7 +29,7 @@ export default function Search() {
     }
   }
 
-  async function getLocation() {
+  async function getAreas() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
       let data = await response.json();
@@ -41,43 +42,65 @@ export default function Search() {
   }
 
   function handleChange(event) {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     setSearch(event.target.value.toLowerCase());
   }
 
   function selectLocation(event) {
-    console.log(event.target.value);
+    //console.log(event.target.value);
     setLocation(event.target.value);
   }
 
   function areaInfo(areas) {
+    return (
+    areas.map(area => 
+      <div key={`${area.name}`}>
+        <div className='text-center' key={`${area.name}`}>
+          {area.name} - {area.url}
+        </div>
+        <div key={`${area.url}`}>
+          {areaPokemon(area.url)}
+        </div>
+      </div>
+    ))
+    // for (const area of areas) {
+    //   //console.log(area.name);
+    //   fetch(area.url)
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(data => {
+    //     console.log(data);
+    //     console.log(data.name);
+    //     return (
+    //       <div>
+    //         {data.name}
+    //       </div>
+    //     )
+    //   })
+    //   .catch(error => console.log(error))
+    // }
+  }
 
-    for (const area of areas) {
-      //console.log(area.name);
-      fetch(area.url)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        console.log(data.name);
-        return (
+  function areaPokemon(url) {
+    fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      //console.log(data);
+      console.log(data.pokemon_encounters);
+      return (
+        data.pokemon_encounters.map(pokemon =>
           <div>
-            {data.name}
+            {pokemon.pokemon}
           </div>
         )
-      })
-      .catch(error => console.log(error))
-    }
+      )
+    })
+    .catch(error => console.log(error))
   }
 
-  function displayAreaName(name) {
-    return (
-      <div>
-        {name}
-      </div>
-    )
-  }
 
   return (
     <>
