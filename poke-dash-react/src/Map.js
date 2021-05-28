@@ -4,8 +4,8 @@ export default function Search() {
   const [region, setRegion] = useState("");
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  //const [areas, setAreas] = useState("");
+  //const [selectedLocation, setSelectedLocation] = useState("");
+  const [areas, setAreas] = useState("");
 
   useEffect(() => {
     getRegion();
@@ -14,7 +14,7 @@ export default function Search() {
 
   useEffect(() => {
     getLocation();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
   async function getRegion() {
@@ -32,7 +32,7 @@ export default function Search() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
       let data = await response.json();
-      setSelectedLocation(data.areas);
+      setAreas(data.areas);
       //console.log(data);
       //console.log(data.areas);
     } catch (error) {
@@ -50,18 +50,34 @@ export default function Search() {
     setLocation(event.target.value);
   }
 
-  function areaInfo(selectedLocation) {
-    selectedLocation.forEach(() => {
-      try {
-        console.log(selectedLocation.url  )
-        let response = fetch(`${selectedLocation.url}`);
-        let data = response.json();
+  function areaInfo(areas) {
+
+    for (const area of areas) {
+      //console.log(area.name);
+      fetch(area.url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
         console.log(data);
-      } catch(error) {
-        console.log(error);
-      }
+        console.log(data.name);
+        return (
+          <div>
+            {data.name}
+          </div>
+        )
+      })
+      .catch(error => console.log(error))
     }
-    )}
+  }
+
+  function displayAreaName(name) {
+    return (
+      <div>
+        {name}
+      </div>
+    )
+  }
 
   return (
     <>
@@ -69,7 +85,7 @@ export default function Search() {
         <h2 className='text-center'>Search</h2>
         <label htmlFor="item"> Search for a map region (e.g kanto)</label>
           <select id="search" onChange={handleChange}>
-            <option value="">Choose an Option</option>
+            <option value="">Choose a Region</option>
             <option value="kanto" >Kanto</option>
             <option value="johto">Johto</option>
             <option value="hoenn">Hoenn</option>
@@ -82,7 +98,7 @@ export default function Search() {
       {region.locations && (
         <div className='text-center'>
           <select onChange={selectLocation}>
-          <option value="">Choose an Option</option>
+          <option value="">Choose a Location</option>
           {
             region.locations.map((locations) => {
               return (
@@ -95,17 +111,10 @@ export default function Search() {
         </select>
       </div>
       )}
-      {selectedLocation && (
+      {areas && (
         <div>
           {
-            selectedLocation.map((selectedLocation) => {
-              return (
-                <div className='text-center' key={`${selectedLocation.name}`}>
-                  {selectedLocation.name} - {selectedLocation.url}
-                </div>
-              )
-            })
-            //areaInfo(selectedLocation)
+            areaInfo(areas)
           }
         </div>
       )}
