@@ -1,0 +1,290 @@
+h1 {
+    text-align: center;
+    font-weight: 1000;
+    padding-top: 20px;
+}
+
+img[src=""],
+img:not([src]){
+  opacity: 0;
+}
+
+img[src="*"]{
+  opacity: 1;
+}
+
+.sprite {
+  width: 150px;
+  height: 200px;
+}
+
+.mainContainer {
+  max-width: 1200px;
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 1rem;
+  align-items: end;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 80px;
+  padding-top: 30px;
+}
+
+.card {
+  align-items: center;
+  margin: 10px;
+}
+#cardBody {
+  width: 100%;
+  text-align: center;
+}
+#cardFoot{
+  width: 100%;
+  display: flex;
+  padding-bottom: 10px;
+  height: 60px;
+  justify-content: space-evenly;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.topInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: 800;
+  height: 100%;
+}
+
+.card-header {
+  width: 100%;
+  height: 45px;
+}
+
+.card-footer{
+  width: 100%;
+  display: flex;
+  padding: 0em;
+  height: 45px;
+}
+
+span:empty{
+  display: none;
+}
+
+.types {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+
+@media (min-width: 600px) {
+  .mainContainer { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .mainContainer { grid-template-columns: repeat(3, 1fr); }
+}
+
+.searchContainer {
+  display: flex;
+  padding-top: 7px;
+  justify-content: center;
+}
+
+.pokeSearch {
+  background: none;
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid black;
+  text-align: center;
+  width: 90%;
+}
+
+.type {
+  border: 0px solid black;
+  padding: 4px;
+  border-radius: 1em;
+  width: 125px;
+  color:white;
+  font-weight: 600;
+  text-align: center;
+}
+
+.name {
+    padding: 10px;
+    width: 80%;
+    background-color: lighten(#e3313f, 5%);;
+    color: white;
+    border-top-left-radius: 1em;
+}
+.id {
+    padding: 10px;
+    width: 20%;
+    text-align: center;
+    background-color: lighten(#3269b2, 10%);
+    color: white;
+    border-top-right-radius: 1em;
+}
+
+.randContainer {
+  display: flex;
+  justify-content: start;
+}
+
+.randomizer {
+  background-color: gray;
+  border: 2px solid black;
+}
+
+[class|="normal"]{
+  background-color: lighten(#a8a878, 20%);
+}
+
+[title~=normal]{
+  background-color: #a8a878;
+}
+
+[class|="fire"]{
+  background-color: lighten(#f08030, 20%);
+}
+
+[title~=fire]{
+  background-color: #f08030;
+}
+
+[title~=water]{
+  background-color: #6890f0;
+}
+
+[class|="water"]{
+  background-color: lighten(#6890f0, 20%);
+}
+
+[title~=grass]{
+  background-color: #78c850;
+}
+
+[class|="grass"]{
+  background-color: lighten(#78c850, 20%);
+}
+
+[title~=electric]{
+  background-color: #f8d030;
+}
+
+[class|="electric"]{
+  background-color: lighten(#f8d030, 20%);
+}
+
+[title~=ice]{
+  background-color: #98d8d8;
+}
+
+[class|="ice"]{
+  background-color: lighten(#98d8d8, 20%);
+}
+
+[title~=fighting]{
+  background-color: #c03028;
+}
+
+[class|="fighting"]{
+  background-color: lighten(#c03028, 20%);
+}
+
+[title~=poison]{
+  background-color: #a040a0;
+}
+
+[class|="poison"]{
+  background-color: lighten(#a040a0, 20%);
+}
+
+[title~=ground]{
+  background-color: #e0c068;
+}
+
+[class|="ground"]{
+  background-color: lighten(#e0c068, 20%);
+}
+
+[title~=flying]{
+  background-color: #a890f0;
+}
+
+[class|="flying"]{
+  background-color: lighten(#a890f0, 20%);
+}
+
+[title~=psychic]{
+  background-color: #f85888;
+}
+
+[class|="psychic"]{
+  background-color: lighten(#f85888, 20%);
+}
+
+[title~=bug]{
+  background-color: #a8b820;
+}
+
+[class|="bug"]{
+  background-color: lighten(#a8b820, 20%);
+}
+
+[title~=rock]{
+  background-color: #b8a038;
+}
+
+[class|="rock"]{
+  background-color: lighten(#b8a038, 20%);
+}
+
+[title~=ghost]{
+  background-color: #705898;
+}
+
+[class|="ghost"]{
+  background-color: lighten(#705898, 20%);
+}
+
+[title~=dark]{
+  background-color: #705848;
+}
+
+[class|="dark"]{
+  background-color: lighten(#705848, 20%);
+}
+
+[title~=dragon]{
+  background-color: #7038f8;
+}
+
+[class|="dragon"]{
+  background-color: lighten(#7038f8, 20%);
+}
+
+[title~=steel]{
+  background-color: #b8b8d0;
+}
+
+[class|="steel"]{
+  background-color: lighten(#b8b8d0, 20%);
+}
+
+[title~=fairy]{
+  background-color: #f0b6bc;
+}
+
+[class|="fairy"]{
+  background-color: lighten(#f0b6bc, 10%);
+}
+
