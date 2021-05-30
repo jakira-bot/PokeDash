@@ -6,7 +6,10 @@ export default function Search() {
   const [location, setLocation] = useState("");
   //const [selectedLocation, setSelectedLocation] = useState("");
   const [areas, setAreas] = useState("");
-  //const [pokeEncounters, setPokeEncounters] = useState("");
+  const [pokeEncounters, setPokeEncounters] = useState([]);
+  const [areaUrls, setAreaUrls] = useState([]);
+  const [areaNames, setAreaNames] = useState([]);
+  const [areaInfo, setAreaInfo] = useState([]);
 
   useEffect(() => {
     getRegion();
@@ -18,11 +21,22 @@ export default function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
+  useEffect(() => {
+    getPokemonEncounters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [areaUrls])
+
+  useEffect(() => {
+    getAreaInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pokeEncounters])
+
   async function getRegion() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/region/${search}`);
       let data = await response.json();
       setRegion(data);
+
       //console.log(data);
     } catch (error) {
       console.log(error);
@@ -33,13 +47,106 @@ export default function Search() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
       let data = await response.json();
+      let urls = [];
+      //let encounterLists = [];
+      let areaList = [];
+      //let areaInformation = [];
+
+      data.areas.forEach(element => {
+        urls.push(element.url);
+        areaList.push(element.name);
+
+
+      });
+      setAreaUrls(urls);
       setAreas(data.areas);
-      //console.log(data);
-      //console.log(data.areas);
+      setAreaNames(areaList);
+      //console.log(pokeEncounters);
+
+
     } catch (error) {
       console.error(error);
     }
   }
+
+  async function getAreaInfo() {
+    let info = []
+    //console.log(areaNames);
+    //console.log(pokeEncounters);
+    for (let i = 0; i < areaNames.length; ++i) {
+      let areaEncounters = {name: areaNames[i], encounters: pokeEncounters[i]};
+      info.push(areaEncounters);
+    }
+    //console.log(info);
+    setAreaInfo(info);
+  }
+
+  async function getPokemonEncounters() {
+    let list = [];
+    //let pokeList = [];
+    let list2 = [];
+    for (let i = 0; i < areaUrls.length; ++i) {
+      try{
+        let pokeList = [];
+        let response = await fetch(areaUrls[i]);
+        let data = await response.json();
+        //console.log(data.pokemon_encounters)
+        for (let j = 0; j < data.pokemon_encounters.length; ++j) {
+          //console.log(data.pokemon_encounters[j].pokemon.url)
+          try{
+            let response2 = await fetch(data.pokemon_encounters[j].pokemon.url);
+            let data2 = await response2.json();
+            //console.log(data2);
+            let pokeInfo = {info: data2}
+            pokeList.push(pokeInfo);
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        list2.push(pokeList);
+        list.push(data.pokemon_encounters);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    //console.log(list2);
+    //console.log(list);
+    setPokeEncounters(list2);
+  }
+
+  function areaInformation() {
+    console.log(areaInfo[0].encounters[0].info.types[0].type.name)
+    return (
+      areaInfo.map(area => 
+        <div key={area.name}>
+          <div className='text-center'>
+            {area.name}
+          </div>
+          {area.encounters && (
+            area.encounters.map(pokemon =>
+              <div className='col-sm-3' key={pokemon.info.name}>
+                <img   src={pokemon.info.sprites.front_default} alt={pokemon.info.name} width="100" height="100"></img>
+                <div className='d-flex justify-content-center' key={pokemon.info.name}>
+                  {pokemon.info.name}
+                </div>
+                <div>
+                  {
+                    pokemon.info.types.map(types => 
+                      <div key={types.type.name}>
+                        {types.type.name}
+                      </div>
+                    )
+                  }
+                </div>
+              </div>
+              )
+          )}
+        </div>
+      )
+    )
+
+  }
+
 
   function handleChange(event) {
     //console.log(event.target.value);
@@ -50,57 +157,6 @@ export default function Search() {
     //console.log(event.target.value);
     setLocation(event.target.value);
   }
-
-  function areaInfo(areas) {
-    return (
-    areas.map(area => 
-      <div key={`${area.name}`}>
-        <div className='text-center' key={`${area.name}`}>
-          {area.name} - {area.url}
-        </div>
-        <div key={`${area.url}`}>
-          {areaPokemon(area.url)}
-        </div>
-      </div>
-    ))
-    // for (const area of areas) {
-    //   //console.log(area.name);
-    //   fetch(area.url)
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(data => {
-    //     console.log(data);
-    //     console.log(data.name);
-    //     return (
-    //       <div>
-    //         {data.name}
-    //       </div>
-    //     )
-    //   })
-    //   .catch(error => console.log(error))
-    // }
-  }
-
-  function areaPokemon(url) {
-    fetch(url)
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      //console.log(data);
-      console.log(data.pokemon_encounters);
-      return (
-        data.pokemon_encounters.map(pokemon =>
-          <div>
-            {pokemon.pokemon}
-          </div>
-        )
-      )
-    })
-    .catch(error => console.log(error))
-  }
-
 
   return (
     <>
@@ -137,7 +193,7 @@ export default function Search() {
       {areas && (
         <div>
           {
-            areaInfo(areas)
+            areaInformation()
           }
         </div>
       )}
