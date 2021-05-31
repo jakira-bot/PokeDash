@@ -117,7 +117,8 @@ export default function Search() {
   }
 
   function areaInformation() {
-    //console.log(areaInfo)
+    console.log(areaInfo);
+    if (areaInfo.length > 0) {
     return (
       areaInfo.map(area => 
         <div key={area.name}>
@@ -126,11 +127,11 @@ export default function Search() {
           </h3>
           {area.encounters && (
             area.encounters.map(pokemon =>
-              <div key={pokemon.info.name}>
+              <div className='card' key={pokemon.info.name}>
                 <h4 className='d-flex justify-content-center' key={pokemon.info.name}>
-                  {pokemon.info.name}
+                {pokemon.info.name.charAt(0).toUpperCase() + pokemon.info.name.slice(1)}
                 </h4>
-                <img className='center' src={pokemon.info.sprites.other.dream_world.front_default} alt={pokemon.info.name} width="200" height="200"></img>
+                <img className='d-flex justify-content-center' src={pokemon.info.sprites.other.dream_world.front_default} alt={pokemon.info.name} width="200" height="200"></img>
                 <div className='d-flex justify-content-center types'>
                   {
                     pokemon.info.types.map(types => 
@@ -140,12 +141,36 @@ export default function Search() {
                     )
                   }
                 </div>
+                <div className='text-center'>
+                  <h5>
+                    Abilities:
+                  </h5>
+                  <div>
+                    {
+                      pokemon.info.abilities.map(ability =>
+                        <div key={ability.ability.name}>
+                          {ability.ability.name.replace('-', ' ')}
+                        </div>
+                      )
+                    }
+                  </div>
+                </div>
+                <br></br>
               </div>
               )
-          )}
+            )
+          }
         </div>
       )
     )
+    }
+    else {
+      return (
+        <h1 className='text-center'>
+          Area Hasn't Been Added Yet!
+        </h1>
+      )
+    }
 
   }
 
@@ -162,9 +187,9 @@ export default function Search() {
 
   return (
     <>
-      <div>
+      <div className='map-background'>
         <form className="mt-2 ml-2 text-center">
-          <h1> Search for a map region (e.g kanto)</h1>
+          <h1> Select a Region</h1>
             <select id="search" onChange={handleChange}>
               <option value="">Choose a Region</option>
               <option value="kanto" >Kanto</option>
@@ -179,7 +204,7 @@ export default function Search() {
         <br></br>
         {region.locations && (
           <div className='text-center'>
-            <h2> Selection an area</h2>
+            <h2> Select a Location</h2>
             <select onChange={selectLocation}>
             <option value="">Choose a Location</option>
             {
