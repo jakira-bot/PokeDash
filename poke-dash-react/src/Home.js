@@ -36,6 +36,7 @@ export default function Home() {
     "3"
   ]);
 
+  pokeStart(0);
   
   function Next(){
     if(countR == 897){
@@ -118,7 +119,7 @@ function Previous(){
   });
 }
   
-  pokeStart(897)
+  
 
   //The colors (scss code) was done by Darian Hutchinson
   return (
@@ -160,7 +161,7 @@ function Previous(){
               <ListGroup.Item>Type: <span className="type" title={pokeC[2]}>{pokeC[2].toUpperCase()}</span> <span className="type" title={pokeC[3]}>{pokeC[3].toUpperCase()}</span></ListGroup.Item>
               <ListGroup.Item>Ability: {pokeC[4]}</ListGroup.Item>
             </ListGroup>
-            <Button variant="Danger"  className="btn-danger" size="lg" onClick={Next}>Next</Button>
+            <Button variant="Danger"  className="btn-danger" size="lg" onClick={Next} width={20}>Next</Button>
           </Card.Body>
           
         </Card>
