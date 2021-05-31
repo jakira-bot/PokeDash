@@ -1,4 +1,3 @@
-//import './Team-Builder.css';
 import './Team-Builder.scss';
 import { useEffect, useState} from "react";
 
@@ -28,15 +27,6 @@ export default function TeamBuilder(props) {
         .then((data) => {
           setPokemon(data);
         })
-      /*const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search}`);
-      if(!response.ok){
-        const message = `Invalid URL...did not fetch data:`;
-        throw new Error(message);
-      }
-      const data = await response.json();
-      setPokemon(data);
-      return data.then(data);
-      */
     } catch (error) {
       console.log(error.message);
     }
@@ -303,11 +293,13 @@ export default function TeamBuilder(props) {
     }
   }
 
+  /*
   function getRandomInt(min, max) {
     min = Math.floor(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
   }
+  */
   /*
   // This randomizer has lots of issues...will work on them
   // if I have time later
@@ -319,11 +311,6 @@ export default function TeamBuilder(props) {
     getMember1();
   }
   */
-
-  function clearText() {
-    console.log('yo');
-    document.getElementsByClassName("pokeSearch").value="";
-  }
 
   return (
     <div className="mainBody bg-light">
@@ -359,7 +346,7 @@ export default function TeamBuilder(props) {
               <div className="searchContainer">
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange} 
-                autoComplete="off" onKeyDown={handleKeyDown1} onBlur={clearText}></input>
+                autoComplete="off" onKeyDown={handleKeyDown1}></input>
               </div>
               <button type="button" onClick={getMember1}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
               height="50" width="50"></img></button>
