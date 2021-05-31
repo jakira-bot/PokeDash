@@ -34,7 +34,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-light justify-content-center">
           <ul className="navbar">
             <li className="nav-link">
               <Link to="/">Home</Link>
