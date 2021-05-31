@@ -1,3 +1,5 @@
+import './Map.css';
+import './Team-Builder.scss'
 import { useState, useEffect } from "react";
 
 export default function Search() {
@@ -90,7 +92,7 @@ export default function Search() {
         let pokeList = [];
         let response = await fetch(areaUrls[i]);
         let data = await response.json();
-        //console.log(data.pokemon_encounters)
+        //console.log(data)
         for (let j = 0; j < data.pokemon_encounters.length; ++j) {
           //console.log(data.pokemon_encounters[j].pokemon.url)
           try{
@@ -115,26 +117,26 @@ export default function Search() {
   }
 
   function areaInformation() {
-    console.log(areaInfo[0].encounters[0].info.types[0].type.name)
+    //console.log(areaInfo)
     return (
       areaInfo.map(area => 
         <div key={area.name}>
-          <div className='text-center'>
-            {area.name}
-          </div>
+          <h3 className='text-center area-header'>
+            {area.name.replaceAll('-', ' ')}
+          </h3>
           {area.encounters && (
             area.encounters.map(pokemon =>
-              <div className='col-sm-3' key={pokemon.info.name}>
-                <img   src={pokemon.info.sprites.front_default} alt={pokemon.info.name} width="100" height="100"></img>
-                <div className='d-flex justify-content-center' key={pokemon.info.name}>
+              <div key={pokemon.info.name}>
+                <h4 className='d-flex justify-content-center' key={pokemon.info.name}>
                   {pokemon.info.name}
-                </div>
-                <div>
+                </h4>
+                <img className='center' src={pokemon.info.sprites.other.dream_world.front_default} alt={pokemon.info.name} width="200" height="200"></img>
+                <div className='d-flex justify-content-center types'>
                   {
                     pokemon.info.types.map(types => 
-                      <div key={types.type.name}>
+                      <span className='type' title={types.type.name} key={types.type.name}>
                         {types.type.name}
-                      </div>
+                      </span>
                     )
                   }
                 </div>
@@ -160,43 +162,47 @@ export default function Search() {
 
   return (
     <>
-      <form className="mt-2 ml-2 text-center">
-        <h2 className='text-center'>Search</h2>
-        <label htmlFor="item"> Search for a map region (e.g kanto)</label>
-          <select id="search" onChange={handleChange}>
-            <option value="">Choose a Region</option>
-            <option value="kanto" >Kanto</option>
-            <option value="johto">Johto</option>
-            <option value="hoenn">Hoenn</option>
-            <option value="sinnoh">Sinnoh</option>
-            <option value="unova">Unova</option>
-            <option value="kalos">Kalos</option>
-            <option value="alola">Alola</option>
+      <div>
+        <form className="mt-2 ml-2 text-center">
+          <h1> Search for a map region (e.g kanto)</h1>
+            <select id="search" onChange={handleChange}>
+              <option value="">Choose a Region</option>
+              <option value="kanto" >Kanto</option>
+              <option value="johto">Johto</option>
+              <option value="hoenn">Hoenn</option>
+              <option value="sinnoh">Sinnoh</option>
+              <option value="unova">Unova</option>
+              <option value="kalos">Kalos</option>
+              <option value="alola">Alola</option>
+            </select>
+        </form>
+        <br></br>
+        {region.locations && (
+          <div className='text-center'>
+            <h2> Selection an area</h2>
+            <select onChange={selectLocation}>
+            <option value="">Choose a Location</option>
+            {
+              region.locations.map((locations) => {
+                return (
+                  <option value={locations.name} key={`${locations.name}`}>
+                      {locations.name.replace('-', ' ')}
+                  </option>
+                );
+            })
+            }
           </select>
-      </form>
-      {region.locations && (
-        <div className='text-center'>
-          <select onChange={selectLocation}>
-          <option value="">Choose a Location</option>
-          {
-            region.locations.map((locations) => {
-              return (
-                <option value={locations.name} key={`${locations.name}`}>
-                    {locations.name}
-                </option>
-              );
-          })
-          }
-        </select>
-      </div>
-      )}
-      {areas && (
-        <div>
-          {
-            areaInformation()
-          }
         </div>
-      )}
+        )}
+        <br></br>
+        {areas && (
+          <div>
+            {
+              areaInformation()
+            }
+          </div>
+        )}
+      </div>
     </>
   );
 }
