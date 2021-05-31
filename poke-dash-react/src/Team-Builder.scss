@@ -1,7 +1,20 @@
-h1 {
-  text-align: center;
-  font-weight: 1000;
-  padding-top: 20px;
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$bgColor: linear-gradient(to right, #e3313f, #3269b2);
+
+.mainBody {
+  background-image: $bgColor;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.mainContainer {
+  max-width: 1000px;
+  display: grid;
+  margin: 0 auto;
+  grid-gap: 3rem;
+  align-items: end;
+  border-radius: 1em;
 }
 
 img[src=""],
@@ -18,21 +31,10 @@ img[src="*"]{
   height: 200px;
 }
 
-.mainContainer {
-  max-width: 1200px;
-  display: grid;
-  margin: 0 auto;
-  grid-gap: 1rem;
-  align-items: end;
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-bottom: 80px;
-  padding-top: 30px;
-}
-
 .card {
   align-items: center;
-  margin: 10px;
+  margin: 0px;
+  border-radius: 2em !important;
 }
 #cardBody {
   width: 100%;
@@ -53,12 +55,11 @@ img[src="*"]{
   justify-content: space-between;
   font-size: large;
   font-weight: 800;
-  height: 100%;
 }
+
 
 .card-header {
   width: 100%;
-  height: 45px;
 }
 
 .card-footer{

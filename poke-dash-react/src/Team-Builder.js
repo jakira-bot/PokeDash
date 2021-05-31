@@ -313,12 +313,11 @@ export default function TeamBuilder(props) {
   */
 
   return (
-    <div className="mainBody bg-light">
-      <h1>TEAM BUILDER</h1>
-      <div className="mainContainer bg-light">
+    <div className="mainBody">
+      <div className="mainContainer">
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member1.name.toUpperCase()}</span>
               <span className="id">{member1.id}</span>
@@ -354,8 +353,8 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member2.name.toUpperCase()}</span>
               <span className="id">{member2.id}</span>
@@ -389,8 +388,8 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member3.name.toUpperCase()}</span>
               <span className="id">{member3.id}</span>
@@ -419,8 +418,8 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member4.name.toUpperCase()}</span>
               <span className="id">{member4.id}</span>
@@ -449,8 +448,8 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member5.name.toUpperCase()}</span>
               <span className="id">{member5.id}</span>
@@ -479,8 +478,8 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card rounded-lg border-0 bg-light">
-          <div className="card-header border-0 bg-light p-0">
+        <div className="card border-0">
+          <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member6.name.toUpperCase()}</span>
               <span className="id">{member6.id}</span>
