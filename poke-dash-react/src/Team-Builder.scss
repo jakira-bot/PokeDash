@@ -1,7 +1,7 @@
 h1 {
-    text-align: center;
-    font-weight: 1000;
-    padding-top: 20px;
+  text-align: center;
+  font-weight: 1000;
+  padding-top: 20px;
 }
 
 img[src=""],
@@ -119,24 +119,24 @@ button {
 }
 
 .name {
-    padding: 10px;
-    width: 80%;
-    background-color: lighten(#e3313f, 5%);;
-    color: white;
-    border-top-left-radius: 1em;
+  padding: 10px;
+  width: 80%;
+  background-color: lighten(#e3313f, 5%);;
+  color: white;
+  border-top-left-radius: 1em;
 }
 .id {
-    padding: 10px;
-    width: 20%;
-    text-align: center;
-    background-color: lighten(#3269b2, 10%);
-    color: white;
-    border-top-right-radius: 1em;
+  padding: 10px;
+  width: 20%;
+  text-align: center;
+  background-color: lighten(#3269b2, 10%);
+  color: white;
+  border-top-right-radius: 1em;
 }
 
 .randContainer {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .randomizer {
