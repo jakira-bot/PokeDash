@@ -9,8 +9,8 @@ export default function Search() {
   //const [selectedLocation, setSelectedLocation] = useState("");
   const [areas, setAreas] = useState("");
   const [pokeEncounters, setPokeEncounters] = useState([]);
-  const [areaUrls, setAreaUrls] = useState([]);
-  const [areaNames, setAreaNames] = useState([]);
+  const [areaUrls, setAreaUrls] = useState('');
+  const [areaNames, setAreaNames] = useState('');
   const [areaInfo, setAreaInfo] = useState([]);
 
   useEffect(() => {
@@ -54,20 +54,27 @@ export default function Search() {
       let areaList = [];
       //let areaInformation = [];
 
-      data.areas.forEach(element => {
-        urls.push(element.url);
-        areaList.push(element.name);
+      if(data.areas){
+        data.areas.forEach(element => {
+          urls.push(element.url);
+          areaList.push(element.name);
 
 
-      });
-      if(data.areas.length > 0) {
+        });
+      }
+
+      //console.log(areaList)
+      if(data.areas && data.areas.length > 0) {
       setAreaUrls(urls);
       setAreas(data.areas);
       setAreaNames(areaList);
       }
-      else {
-        setAreaInfo([]);
+      else if (data.areas){
+        setAreaUrls([]);
+        setAreas([]);
+        setAreaNames([]);
       }
+
       //console.log(data);
 
 
@@ -77,7 +84,7 @@ export default function Search() {
   }
 
   async function getAreaInfo() {
-    let info = []
+    let info = [];
     //console.log(areaNames);
     //console.log(pokeEncounters);
     for (let i = 0; i < areaNames.length; ++i) {
@@ -118,6 +125,7 @@ export default function Search() {
     }
     //console.log(list2);
     //console.log(list);
+    //console.log(list2)
     setPokeEncounters(list2);
   }
 
@@ -125,7 +133,8 @@ export default function Search() {
     // if(areaInfo.length > 0) {
     //   console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
     // }
-    if (areaInfo.length > 0) {
+
+    if (pokeEncounters.length > 0) {
     return (
       areaInfo.map(area => 
         <div key={area.name}>
@@ -183,11 +192,11 @@ export default function Search() {
   function upperAreaName(name) {
     let splitName = name.split('-');
     var upperName = [];
-    console.log(splitName);
+
     splitName.map(word =>
     upperName.push(word[0].toUpperCase() + word.slice(1))
     )
-    console.log(upperName);
+
     return upperName.join(' ');
   }
   
