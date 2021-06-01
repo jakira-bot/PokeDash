@@ -68,7 +68,7 @@ export default function Search() {
       else {
         setAreaInfo([]);
       }
-      console.log(data);
+      //console.log(data);
 
 
     } catch (error) {
@@ -122,7 +122,9 @@ export default function Search() {
   }
 
   function areaInformation() {
-    //console.log(areaInfo);
+    if(areaInfo.length > 0) {
+      console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
+    }
     if (areaInfo.length > 0) {
     return (
       areaInfo.map(area => 
@@ -136,7 +138,7 @@ export default function Search() {
                 <h4 className='d-flex justify-content-center' key={pokemon.info.name}>
                 {pokemon.info.name.charAt(0).toUpperCase() + pokemon.info.name.slice(1)}
                 </h4>
-                <img className='d-flex justify-content-center' src={pokemon.info.sprites.other.dream_world.front_default} alt={pokemon.info.name} width="200" height="200"></img>
+                <img className='d-flex justify-content-center' src={getSprite(pokemon.info.sprites)} alt={pokemon.info.name} width="200" height="200"></img>
                 <div className='d-flex justify-content-center types'>
                   {
                     pokemon.info.types.map(types => 
@@ -178,7 +180,14 @@ export default function Search() {
     }
   }
   
-
+  function getSprite(sprites) {
+    if (sprites.other.dream_world.front_default) {
+      return sprites.other.dream_world.front_default;
+    }
+    else {
+      return sprites.other['official-artwork'].front_default;
+    }
+  }
 
   function handleChange(event) {
     //console.log(event.target.value);
