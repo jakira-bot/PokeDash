@@ -122,15 +122,15 @@ export default function Search() {
   }
 
   function areaInformation() {
-    if(areaInfo.length > 0) {
-      console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
-    }
+    // if(areaInfo.length > 0) {
+    //   console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
+    // }
     if (areaInfo.length > 0) {
     return (
       areaInfo.map(area => 
         <div key={area.name}>
           <h3 className='text-center area-header'>
-            {area.name.replaceAll('-', ' ')}
+            {upperAreaName(area.name)}
           </h3>
           {area.encounters && (
             area.encounters.map(pokemon =>
@@ -178,6 +178,17 @@ export default function Search() {
         </h1>
       )
     }
+  }
+
+  function upperAreaName(name) {
+    let splitName = name.split('-');
+    var upperName = [];
+    console.log(splitName);
+    splitName.map(word =>
+    upperName.push(word[0].toUpperCase() + word.slice(1))
+    )
+    console.log(upperName);
+    return upperName.join(' ');
   }
   
   function getSprite(sprites) {
