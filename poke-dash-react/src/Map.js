@@ -60,10 +60,15 @@ export default function Search() {
 
 
       });
+      if(data.areas.length > 0) {
       setAreaUrls(urls);
       setAreas(data.areas);
       setAreaNames(areaList);
-      //console.log(pokeEncounters);
+      }
+      else {
+        setAreaInfo([]);
+      }
+      console.log(data);
 
 
     } catch (error) {
@@ -117,7 +122,7 @@ export default function Search() {
   }
 
   function areaInformation() {
-    console.log(areaInfo);
+    //console.log(areaInfo);
     if (areaInfo.length > 0) {
     return (
       areaInfo.map(area => 
@@ -171,8 +176,8 @@ export default function Search() {
         </h1>
       )
     }
-
   }
+  
 
 
   function handleChange(event) {
