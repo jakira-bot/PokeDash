@@ -139,7 +139,7 @@ export default function Search() {
       areaInfo.map(area => 
         <div key={area.name}>
           <h3 className='text-center area-header'>
-            {upperAreaName(area.name)}
+            {capitalizeName(area.name)}
           </h3>
           {area.encounters && (
             area.encounters.map(pokemon =>
@@ -165,7 +165,7 @@ export default function Search() {
                     {
                       pokemon.info.abilities.map(ability =>
                         <div key={ability.ability.name}>
-                          {ability.ability.name.replace('-', ' ')}
+                          {capitalizeName(ability.ability.name)}
                         </div>
                       )
                     }
@@ -189,7 +189,7 @@ export default function Search() {
     }
   }
 
-  function upperAreaName(name) {
+  function capitalizeName(name) {
     let splitName = name.split('-');
     var upperName = [];
 
