@@ -40,100 +40,100 @@ export default function Home() {
   const [pokeid, setPokeid] = useState(null);
 
   pokeStart(0);
-  let  xhr = new XMLHttpRequest();
-  xhr.open ('GET', url, true);
-  xhr.responseType = 'json';
-  xhr.send();
-  xhr.onload = () => {
-      if ( xhr.status === 200) {
-          list = xhr.response.results;
-          
-      }
-      else {
-          console.log( `Status Code: ${xhr.status} - ${xhr.statusText }`) ;
-      }
-  };
   useEffect(() =>{
-    let current = pokeGrab(list[countL].name);
-    current = current.then( (data) => {
-      let fill = [Caps(data.name)];
-      if( data.sprites.other.dream_world.front_default != null){
-        fill.push(data.sprites.other.dream_world.front_default);
-      } else (
-        fill.push(data.sprites.front_default)
-      )
-      
-      if(data.types.length == 1){
-        fill.push(data.types[0].type.name);
-        fill.push("");
-      } else {
-        fill.push(data.types[0].type.name);
-        fill.push(data.types[1].type.name);
-    }
-      if(data.abilities.length == 3){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
-      } else { 
-        fill.push(Caps(data.abilities[0].ability.name));
-      }
-      fill.push(data.id);
-      setPokeA(fill);
-    });
+    let  xhr = new XMLHttpRequest();
+    xhr.open ('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.send();
+    xhr.onload = () => {
+        if ( xhr.status === 200) {
+          list = xhr.response.results;
+          let current = pokeGrab(list[countL].name);
+          current = current.then( (data) => {
+            let fill = [Caps(data.name)];
+            if( data.sprites.other.dream_world.front_default != null){
+              fill.push(data.sprites.other.dream_world.front_default);
+            } else (
+              fill.push(data.sprites.front_default)
+            )
+            
+            if(data.types.length == 1){
+              fill.push(data.types[0].type.name);
+              fill.push("");
+            } else {
+              fill.push(data.types[0].type.name);
+              fill.push(data.types[1].type.name);
+          }
+            if(data.abilities.length == 3){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+            } else if(data.abilities.length == 2){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+            } else { 
+              fill.push(Caps(data.abilities[0].ability.name));
+            }
+            fill.push(data.id);
+            setPokeA(fill);
+          });
 
-    current = pokeGrab(list[countR-1].name);
-    current = current.then( (data) => {
-      let fill = [Caps(data.name)];
-      if( data.sprites.other.dream_world.front_default != null){
-        fill.push(data.sprites.other.dream_world.front_default);
-      } else (
-        fill.push(data.sprites.front_default)
-      )
-      
-      if(data.types.length == 1){
-        fill.push(data.types[0].type.name);
-        fill.push("");
-      } else {
-        fill.push(data.types[0].type.name);
-        fill.push(data.types[1].type.name);
-    }
-      if(data.abilities.length == 3){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
-      } else { 
-        fill.push(Caps(data.abilities[0].ability.name));
-      }
-      fill.push(data.id);
-      setPokeB(fill);
-    });
-    current = pokeGrab(list[countR].name);
-    current = current.then( (data) => {
-      let fill = [Caps(data.name)];
-      if( data.sprites.other.dream_world.front_default != null){
-        fill.push(data.sprites.other.dream_world.front_default);
-      } else (
-        fill.push(data.sprites.front_default)
-      )
-      
-      if(data.types.length == 1){
-        fill.push(data.types[0].type.name);
-        fill.push("");
-      } else {
-        fill.push(data.types[0].type.name);
-        fill.push(data.types[1].type.name);
-    }
-      if(data.abilities.length == 3){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
-        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
-      } else { 
-        fill.push(Caps(data.abilities[0].ability.name));
-      }
-      fill.push(data.id);
-      setPokeC(fill);
-    });
+          current = pokeGrab(list[countR-1].name);
+          current = current.then( (data) => {
+            let fill = [Caps(data.name)];
+            if( data.sprites.other.dream_world.front_default != null){
+              fill.push(data.sprites.other.dream_world.front_default);
+            } else (
+              fill.push(data.sprites.front_default)
+            )
+            
+            if(data.types.length == 1){
+              fill.push(data.types[0].type.name);
+              fill.push("");
+            } else {
+              fill.push(data.types[0].type.name);
+              fill.push(data.types[1].type.name);
+          }
+            if(data.abilities.length == 3){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+            } else if(data.abilities.length == 2){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+            } else { 
+              fill.push(Caps(data.abilities[0].ability.name));
+            }
+            fill.push(data.id);
+            setPokeB(fill);
+          });
+          current = pokeGrab(list[countR].name);
+          current = current.then( (data) => {
+            let fill = [Caps(data.name)];
+            if( data.sprites.other.dream_world.front_default != null){
+              fill.push(data.sprites.other.dream_world.front_default);
+            } else (
+              fill.push(data.sprites.front_default)
+            )
+            
+            if(data.types.length == 1){
+              fill.push(data.types[0].type.name);
+              fill.push("");
+            } else {
+              fill.push(data.types[0].type.name);
+              fill.push(data.types[1].type.name);
+          }
+            if(data.abilities.length == 3){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+            } else if(data.abilities.length == 2){
+              fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+            } else { 
+              fill.push(Caps(data.abilities[0].ability.name));
+            }
+            fill.push(data.id);
+            setPokeC(fill);
+          });
+        }
+        else {
+            console.log( `Status Code: ${xhr.status} - ${xhr.statusText }`) ;
+        }
+    };
   },[])
+ 
   
   function Next(){
     if(countR == 897){
@@ -146,6 +146,8 @@ export default function Home() {
     } else {
       countL = countL + 1;
     }
+    setPokeA(pokeB);
+    setPokeB(pokeC);
     let current = pokeGrab(list[countR].name);
     current = current.then( (data) => {
       let fill = [Caps(data.name)];
@@ -405,7 +407,7 @@ function pokeStart(num) {
           for (const mon of xhr.response.results){
           }
           list = xhr.response.results;
-          //console.log(list[num].name);
+          console.log(list);
           let current = pokeGrab(list[num].name);
           current = current.then( (data) => {
             //let pic = document.createElement('img');
