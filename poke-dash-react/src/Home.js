@@ -1,6 +1,6 @@
 import './Team-Builder.scss';
 import React from 'react';
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, CardGroup, ListGroup, Container, Row  } from 'react-bootstrap';
 
@@ -11,6 +11,7 @@ let search = 'https://pokeapi.co/api/v2/pokemon/';
 let countR = 2;
 let countL = 0;
 let list = [];
+pokeStart(0);
 //Spot holders for the inital load
 
 
@@ -39,6 +40,100 @@ export default function Home() {
   const [pokeid, setPokeid] = useState(null);
 
   pokeStart(0);
+  let  xhr = new XMLHttpRequest();
+  xhr.open ('GET', url, true);
+  xhr.responseType = 'json';
+  xhr.send();
+  xhr.onload = () => {
+      if ( xhr.status === 200) {
+          list = xhr.response.results;
+          
+      }
+      else {
+          console.log( `Status Code: ${xhr.status} - ${xhr.statusText }`) ;
+      }
+  };
+  useEffect(() =>{
+    let current = pokeGrab(list[countL].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeA(fill);
+    });
+
+    current = pokeGrab(list[countR-1].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeB(fill);
+    });
+    current = pokeGrab(list[countR].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeC(fill);
+    });
+  },[])
   
   function Next(){
     if(countR == 897){
@@ -51,8 +146,6 @@ export default function Home() {
     } else {
       countL = countL + 1;
     }
-    setPokeA(pokeB);
-    setPokeB(pokeC);
     let current = pokeGrab(list[countR].name);
     current = current.then( (data) => {
       let fill = [Caps(data.name)];
@@ -130,8 +223,8 @@ function search(){
       countR = 1;
       countL = 897;
     } else {
-      countR = pokeid;
-      countL = pokeid - 2;
+      countR = parseInt(pokeid);
+      countL = parseInt(pokeid) - 2;
     }
     
     let current = pokeGrab(list[countL].name);
@@ -230,6 +323,8 @@ function keyStroke(stroke){
   }
 }
 
+
+
   //The colors (scss code), middle button design was done by Darian Hutchinson
   return (
     <>
@@ -293,7 +388,7 @@ function keyStroke(stroke){
 async function pokeGrab(pname) {
   let partA = await fetch([search,pname].join(''));
   let partB = await partA.json();
-  console.log(partB);
+  //console.log(partB);
   return await partB;
 }
 
@@ -310,7 +405,7 @@ function pokeStart(num) {
           for (const mon of xhr.response.results){
           }
           list = xhr.response.results;
-          console.log(list[num].name);
+          //console.log(list[num].name);
           let current = pokeGrab(list[num].name);
           current = current.then( (data) => {
             //let pic = document.createElement('img');
@@ -328,3 +423,4 @@ function pokeStart(num) {
 function Caps(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
