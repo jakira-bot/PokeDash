@@ -332,7 +332,7 @@ function keyStroke(stroke){
 
   //The colors (scss code), middle button design was done by Darian Hutchinson
   return (
-    <>
+    <div>
       <h1>Home</h1>
       <section id="Box">
       <div id="Home">
@@ -385,7 +385,7 @@ function keyStroke(stroke){
 
       </div>
       </section>
-    </>
+    </div>
   );
 }
 
