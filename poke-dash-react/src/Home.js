@@ -407,7 +407,7 @@ function pokeStart(num) {
           for (const mon of xhr.response.results){
           }
           list = xhr.response.results;
-          console.log(list);
+          //console.log(list);
           let current = pokeGrab(list[num].name);
           current = current.then( (data) => {
             //let pic = document.createElement('img');
@@ -425,4 +425,3 @@ function pokeStart(num) {
 function Caps(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
