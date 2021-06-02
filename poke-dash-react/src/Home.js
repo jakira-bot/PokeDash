@@ -2,7 +2,7 @@ import './Team-Builder.scss';
 import React from 'react';
 import { useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, Button, CardGroup, ListGroup } from 'react-bootstrap';
+import { Card, Button, CardGroup, ListGroup, Container, Row  } from 'react-bootstrap';
 
 
 let url = 'https://pokeapi.co/api/v2/pokemon?limit=898",';
@@ -35,6 +35,8 @@ export default function Home() {
     "Overgrown / Chlorophyll",
     "3"
   ]);
+
+  const [pokeid, setPokeid] = useState(null);
 
   pokeStart(0);
   
@@ -119,9 +121,116 @@ function Previous(){
   });
 }
   
-  
+function search(){
+  if(pokeid != null){
+    if(pokeid == 898){
+      countR = 0;
+      countL = 896;
+    } else if(pokeid == 1){
+      countR = 1;
+      countL = 897;
+    } else {
+      countR = pokeid;
+      countL = pokeid - 2;
+    }
+    
+    let current = pokeGrab(list[countL].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeA(fill);
+    });
 
-  //The colors (scss code) was done by Darian Hutchinson
+    current = pokeGrab(list[countR-1].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeB(fill);
+    });
+    current = pokeGrab(list[countR].name);
+    current = current.then( (data) => {
+      let fill = [Caps(data.name)];
+      if( data.sprites.other.dream_world.front_default != null){
+        fill.push(data.sprites.other.dream_world.front_default);
+      } else (
+        fill.push(data.sprites.front_default)
+      )
+      
+      if(data.types.length == 1){
+        fill.push(data.types[0].type.name);
+        fill.push("");
+      } else {
+        fill.push(data.types[0].type.name);
+        fill.push(data.types[1].type.name);
+    }
+      if(data.abilities.length == 3){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
+      } else if(data.abilities.length == 2){
+        fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
+      } else { 
+        fill.push(Caps(data.abilities[0].ability.name));
+      }
+      fill.push(data.id);
+      setPokeC(fill);
+    });
+  }
+}
+
+function onInput(event){
+  if(event.target.value > 0 && event.target.value < 899){
+    setPokeid(event.target.value)
+  } else {
+    setPokeid(null)
+  }
+}
+
+function keyStroke(stroke){
+  if(stroke.key === 'Enter') {
+    search();
+  }
+}
+
+  //The colors (scss code), middle button design was done by Darian Hutchinson
   return (
     <>
       <h1>Home</h1>
@@ -150,6 +259,13 @@ function Previous(){
             <ListGroup.Item>Type: <span className="type" title={pokeB[2]}>{pokeB[2].toUpperCase()}</span> <span className="type" title={pokeB[3]}>{pokeB[3].toUpperCase()}</span></ListGroup.Item>
               <ListGroup.Item>Ability: {pokeB[4]}</ListGroup.Item>
             </ListGroup>
+            <Container>
+                <Row>
+                <input type="text" className="pokeSearch" placeholder="Input Dex Entry" name="pokeid" autoComplete="off" onChange={onInput} onKeyDown={keyStroke}></input>
+                <button type="button" onClick={search}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
+                height="50" width="50"></img></button>
+              </Row>
+            </Container>
           </Card.Body>
         </Card>
         <Card className="text-center">
