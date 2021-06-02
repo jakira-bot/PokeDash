@@ -75,7 +75,11 @@ export default function Home() {
             setPokeA(fill);
           });
 
-          current = pokeGrab(list[countR-1].name);
+          if(countR == 0){
+            current = pokeGrab(list[897].name);
+          } else {
+            current = pokeGrab(list[countR-1].name);
+          }
           current = current.then( (data) => {
             let fill = [Caps(data.name)];
             if( data.sprites.other.dream_world.front_default != null){
