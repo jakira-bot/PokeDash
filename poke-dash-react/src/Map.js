@@ -222,7 +222,7 @@ export default function Search() {
   return (
     <>
       <div className='map-background'>
-        <form className="mt-2 ml-2 text-center">
+        <form className="text-center">
           <h1> Select a Region</h1>
             <select id="search" onChange={handleChange}>
               <option value="">Choose a Region</option>
