@@ -663,7 +663,6 @@ export default function TeamBuilder(props) {
     getMember6();
     
   }
-  
 
   return (
     <div className="mainBody">
@@ -689,19 +688,12 @@ export default function TeamBuilder(props) {
           </div>
           <div className="card-footer border-0 bg-light p-0">
             <div className={member1.types[0]} id="cardFoot">
-            
-              <div className="randContainer">
-                <button type="button" onClick={randomize1}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/201.png" alt="unown"
-                height="50" width="50"></img></button>
-              </div>
            
               <div className="searchContainer">
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange1} 
                 autoComplete="off" onKeyDown={handleKeyDown1}></input>
               </div>
-              <button type="button" onClick={getMember1}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
@@ -735,8 +727,6 @@ export default function TeamBuilder(props) {
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange2} autoComplete="off" onKeyDown={handleKeyDown2}></input>
               </div>
-              <button type="button" onClick={getMember2}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
@@ -765,8 +755,6 @@ export default function TeamBuilder(props) {
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange3} autoComplete="off" onKeyDown={handleKeyDown3}></input>
               </div>
-              <button type="button" onClick={getMember3}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
@@ -795,8 +783,6 @@ export default function TeamBuilder(props) {
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange4} autoComplete="off" onKeyDown={handleKeyDown4}></input>
               </div>
-              <button type="button" onClick={getMember4}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
@@ -825,8 +811,6 @@ export default function TeamBuilder(props) {
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange5} autoComplete="off" onKeyDown={handleKeyDown5}></input>
               </div>
-              <button type="button" onClick={getMember5}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
@@ -855,11 +839,12 @@ export default function TeamBuilder(props) {
                 <label htmlFor="pokeSearch"></label>
                 <input type="text" className="pokeSearch" placeholder="Get Pokemon!" name="pokeSearch" onChange={handleChange6} autoComplete="off" onKeyDown={handleKeyDown6}></input>
               </div>
-              <button type="button" onClick={getMember6}><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="masterball"
-              height="50" width="50"></img></button>
             </div>
           </div>
         </div>
+      </div>
+      <div className="randContainer">
+        <button type="button" className="randomizer" onClick={randomize1}>Randomize Team!</button>
       </div>
     </div>
   )
