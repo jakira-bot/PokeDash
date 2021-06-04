@@ -6,12 +6,18 @@ export default function Search() {
   const [region, setRegion] = useState("");
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
-  //const [selectedLocation, setSelectedLocation] = useState("");
   const [areas, setAreas] = useState("");
   const [pokeEncounters, setPokeEncounters] = useState([]);
   const [areaUrls, setAreaUrls] = useState('');
   const [areaNames, setAreaNames] = useState('');
   const [areaInfo, setAreaInfo] = useState([]);
+
+  const onClick = () => {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
   useEffect(() => {
     getRegion();
@@ -50,16 +56,12 @@ export default function Search() {
       let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
       let data = await response.json();
       let urls = [];
-      //let encounterLists = [];
       let areaList = [];
-      //let areaInformation = [];
 
       if(data.areas){
         data.areas.forEach(element => {
           urls.push(element.url);
           areaList.push(element.name);
-
-
         });
       }
 
@@ -74,10 +76,7 @@ export default function Search() {
         setAreas([]);
         setAreaNames([]);
       }
-
       //console.log(data);
-
-
     } catch (error) {
       console.error(error);
     }
@@ -114,18 +113,16 @@ export default function Search() {
             let pokeInfo = {info: data2}
             pokeList.push(pokeInfo);
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
         }
         list2.push(pokeList);
         list.push(data.pokemon_encounters);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-    //console.log(list2);
-    //console.log(list);
-    //console.log(list2)
+
     setPokeEncounters(list2);
   }
 
@@ -194,7 +191,7 @@ export default function Search() {
     var upperName = [];
 
     splitName.map(word =>
-    upperName.push(word[0].toUpperCase() + word.slice(1))
+      upperName.push(word[0].toUpperCase() + word.slice(1))
     )
 
     return upperName.join(' ');
@@ -261,6 +258,10 @@ export default function Search() {
             }
           </div>
         )}
+        <div>
+          <button type="button" className="randomizer position-fixed bottom-0 end-0" onClick={onClick}>Back to Top</button>          
+        </div>
+        <br></br>
       </div>
     </>
   );
