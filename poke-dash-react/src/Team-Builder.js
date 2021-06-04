@@ -9,26 +9,20 @@ export default function TeamBuilder(props) {
   const [pokemon4, setPokemon4] = useState(null);
   const [pokemon5, setPokemon5] = useState(null);
   const [pokemon6, setPokemon6] = useState(null);
-  const [search1, setSearch1] = useState("");
-  const [search2, setSearch2] = useState("");
-  const [search3, setSearch3] = useState("");
-  const [search4, setSearch4] = useState("");
-  const [search5, setSearch5] = useState("");
-  const [search6, setSearch6] = useState("");
 
-  // These are hard-coded for initial values but are updated dynamically
-  const [member1, setMember1] = useState({name: "pikachu", id: "25", types: ["electric","","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"});
-  const [member2, setMember2] = useState({name: "charmander", id: "4", types: ["fire","","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg"});
-  const [member3, setMember3] = useState({name: "bulbasaur", id: "1", types: ["grass","poison","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"});
-  const [member4, setMember4] = useState({name: "squirtle", id: "7", types: ["water","","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/7.svg"});
-  const [member5, setMember5] = useState({name: "butterfree", id: "12", types: ["bug","flying","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/12.svg"});
-  const [member6, setMember6] = useState({name: "pidgeotto", id: "17", types: ["normal","flying","",""], 
-  sprite:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/17.svg"});
+  const [search1, setSearch1] = useState("pikachu");
+  const [search2, setSearch2] = useState("charmander");
+  const [search3, setSearch3] = useState("bulbasaur");
+  const [search4, setSearch4] = useState("squirtle");
+  const [search5, setSearch5] = useState("butterfree");
+  const [search6, setSearch6] = useState("pidgeotto");
+
+  const [member1, setMember1] = useState({name: "", id: "", types: ["","","",""], sprite:""});
+  const [member2, setMember2] = useState({name: "", id: "", types: ["","","",""], sprite:""});
+  const [member3, setMember3] = useState({name: "", id: "", types: ["","","",""], sprite:""});
+  const [member4, setMember4] = useState({name: "", id: "", types: ["","","",""], sprite:""});
+  const [member5, setMember5] = useState({name: "", id: "", types: ["","","",""], sprite:""});
+  const [member6, setMember6] = useState({name: "", id: "", types: ["","","",""], sprite:""});
 
   async function getPokemon1() {
     try{
@@ -668,7 +662,7 @@ export default function TeamBuilder(props) {
     <div className="mainBody">
       <div className="mainContainer">
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member1.name.toUpperCase()}</span>
@@ -698,7 +692,7 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member2.name.toUpperCase()}</span>
@@ -731,7 +725,7 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member3.name.toUpperCase()}</span>
@@ -759,7 +753,7 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member4.name.toUpperCase()}</span>
@@ -787,7 +781,7 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member5.name.toUpperCase()}</span>
@@ -815,7 +809,7 @@ export default function TeamBuilder(props) {
           </div>
         </div>
 
-        <div className="card border-0">
+        <div className="card border-0 grow-shadow">
           <div className="card-header border-0 p-0">
             <div className="topInfo">
               <span className="name">{member6.name.toUpperCase()}</span>
@@ -844,7 +838,7 @@ export default function TeamBuilder(props) {
         </div>
       </div>
       <div className="randContainer">
-        <button type="button" className="randomizer" onClick={randomize1}>Randomize Team!</button>
+        <button type="button" className="randomizer grow-shadow" onClick={randomize1}>Randomize Team!</button>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
-$bgColor: linear-gradient(to right, #e3313f, #3269b2);
+$bgColor: linear-gradient(to right bottom, #e3313f, #3269b2);
 
 .mainBody {
   background-image: $bgColor;
@@ -36,6 +36,19 @@ img[src="*"]{
   margin: 0px;
   border-radius: 2em !important;
 }
+
+.grow-shadow {
+  -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+
+.grow-shadow:hover {
+  -webkit-transform: scale(1.07);
+  -ms-transform: scale(1.07);
+      transform: scale(1.07);
+}
+
+
 #cardBody {
   width: 100%;
   text-align: center;
