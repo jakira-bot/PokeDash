@@ -261,7 +261,6 @@ export default function Search() {
         <div>
           <button type="button" className="randomizer position-fixed bottom-0 end-0" onClick={onClick}>Back to Top</button>          
         </div>
-        <br></br>
       </div>
     </>
   );
