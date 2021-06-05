@@ -206,7 +206,7 @@ export default function Search() {
         </div>)}
         else {
           return (
-            <div>
+            <div key={ability.ability.name}>
               {capitalizeName(ability.ability.name)} (Hidden)
             </div>
           )
