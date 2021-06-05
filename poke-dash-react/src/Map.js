@@ -110,6 +110,14 @@ export default function Search() {
         let response = await fetch(areaUrls[i]);
         let data = await response.json();
         //console.log(data)
+        // try{
+        //   let response1 = await fetch(data.encounter_method_rates[0].encounter_method.url);
+        //   let data1 = await response1.json();
+        //   console.log(data1)
+
+        // } catch (error) {
+        //   console.log(error);
+        // }
         for (let j = 0; j < data.pokemon_encounters.length; ++j) {
           //console.log(data.pokemon_encounters[j].pokemon.url)
           try{
@@ -136,9 +144,8 @@ export default function Search() {
   //Pokemon info includes name, image, types, and abilities. Displays "Area hasn't been added yet if location has no areas or pokemon according to api"
   function areaInformation() {
     // if(areaInfo.length > 0) {
-    //   console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
+    //   console.log(areaInfo[0].encounters[0].info)
     // }
-
     if (pokeEncounters.length > 0) {
     return (
       areaInfo.map(area => 
@@ -167,13 +174,7 @@ export default function Search() {
                     Abilities:
                   </h5>
                   <div>
-                    {
-                      pokemon.info.abilities.map(ability =>
-                        <div key={ability.ability.name}>
-                          {capitalizeName(ability.ability.name)}
-                        </div>
-                      )
-                    }
+                    {displayAbilities(pokemon.info.abilities)}
                   </div>
                 </div>
                 <br></br>
@@ -192,6 +193,25 @@ export default function Search() {
         </h1>
       )
     }
+  }
+
+  //displays abilities of pokemon.
+  function displayAbilities(abilities) {
+    return (
+      abilities.map(ability => {
+        if (ability.is_hidden === false) {
+        return (
+        <div key={ability.ability.name}>
+          {capitalizeName(ability.ability.name)}
+        </div>)}
+        else {
+          return (
+            <div>
+              {capitalizeName(ability.ability.name)} (Hidden)
+            </div>
+          )
+        }
+      }))
   }
 
   //Capitalizes the first letter of each word and returns it
