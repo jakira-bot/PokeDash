@@ -99,18 +99,6 @@ button {
 }
 
 
-@media (min-width: 600px) {
-  .mainContainer { grid-template-columns: repeat(2, 1fr);
-  max-width: 800px; 
-  padding-left: 20px;
-  padding-right: 20px;}
-}
-
-@media (min-width: 900px) {
-  .mainContainer { grid-template-columns: repeat(3, 1fr); 
-  max-width: 1100px;}
-}
-
 .searchContainer {
   display: flex;
   padding-top: 7px;
@@ -174,17 +162,34 @@ button {
 }
 
 .tableContainer {
-  padding-top: 30px;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-bottom: 60px;
+  padding: 0px;
 }
 
 .tableTitle {
   color: white;
-  padding-bottom: 30px;
+  padding-top: 30px;
   text-decoration: underline;
 }
+
+@media (min-width: 600px) {
+  .mainContainer { grid-template-columns: repeat(2, 1fr);
+  max-width: 800px; 
+  padding-left: 20px;
+  padding-right: 20px;}
+
+  .tableContainer {
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media (min-width: 900px) {
+  .mainContainer { grid-template-columns: repeat(3, 1fr); 
+  max-width: 1100px;}
+}
+
 
 tr {
   align-items: center;
