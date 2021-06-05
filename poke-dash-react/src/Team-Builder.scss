@@ -9,7 +9,7 @@ $bgColor: linear-gradient(to right bottom, #e3313f, #3269b2);
 }
 
 .mainContainer {
-  max-width: 1000px;
+  max-width: 350px;
   display: grid;
   margin: 0 auto;
   grid-gap: 3rem;
@@ -48,11 +48,11 @@ img[src="*"]{
       transform: scale(1.07);
 }
 
-
 #cardBody {
   width: 100%;
   text-align: center;
 }
+
 #cardFoot{
   width: 100%;
   display: flex;
@@ -100,11 +100,15 @@ button {
 
 
 @media (min-width: 600px) {
-  .mainContainer { grid-template-columns: repeat(2, 1fr); }
+  .mainContainer { grid-template-columns: repeat(2, 1fr);
+  max-width: 800px; 
+  padding-left: 20px;
+  padding-right: 20px;}
 }
 
 @media (min-width: 900px) {
-  .mainContainer { grid-template-columns: repeat(3, 1fr); }
+  .mainContainer { grid-template-columns: repeat(3, 1fr); 
+  max-width: 1100px;}
 }
 
 .searchContainer {
@@ -121,6 +125,13 @@ button {
   text-align: center;
   width: 90%;
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
 
 .type {
   border: 0px solid black;
@@ -151,7 +162,7 @@ button {
 .randContainer {
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 .randomizer {
@@ -160,6 +171,25 @@ button {
   border-radius: 1em;
   font-weight: 800;
   padding: 10px;
+}
+
+.tableContainer {
+  padding-top: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+}
+
+h2 {
+  color: white;
+  padding-bottom: 30px;
+  text-decoration: underline;
+}
+
+tr {
+  align-items: center;
+  color: white;
+  font-weight: 500;
 }
 
 [class|="normal"]{

@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+.navbar {
+  background-color:#3269b2;
+}
+
+.nav-link {
+  font-weight: 800;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: #e3313f;
+}

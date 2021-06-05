@@ -57,16 +57,16 @@ export default function Home() {
               fill.push(data.sprites.front_default)
             )
             
-            if(data.types.length == 1){
+            if(data.types.length === 1){
               fill.push(data.types[0].type.name);
               fill.push("");
             } else {
               fill.push(data.types[0].type.name);
               fill.push(data.types[1].type.name);
           }
-            if(data.abilities.length == 3){
+            if(data.abilities.length === 3){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-            } else if(data.abilities.length == 2){
+            } else if(data.abilities.length === 2){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
             } else { 
               fill.push(Caps(data.abilities[0].ability.name));
@@ -75,7 +75,7 @@ export default function Home() {
             setPokeA(fill);
           });
 
-          if(countR == 0){
+          if(countR === 0){
             current = pokeGrab(list[897].name);
           } else {
             current = pokeGrab(list[countR-1].name);
@@ -88,16 +88,16 @@ export default function Home() {
               fill.push(data.sprites.front_default)
             )
             
-            if(data.types.length == 1){
+            if(data.types.length === 1){
               fill.push(data.types[0].type.name);
               fill.push("");
             } else {
               fill.push(data.types[0].type.name);
               fill.push(data.types[1].type.name);
           }
-            if(data.abilities.length == 3){
+            if(data.abilities.length === 3){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-            } else if(data.abilities.length == 2){
+            } else if(data.abilities.length === 2){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
             } else { 
               fill.push(Caps(data.abilities[0].ability.name));
@@ -114,16 +114,16 @@ export default function Home() {
               fill.push(data.sprites.front_default)
             )
             
-            if(data.types.length == 1){
+            if(data.types.length === 1){
               fill.push(data.types[0].type.name);
               fill.push("");
             } else {
               fill.push(data.types[0].type.name);
               fill.push(data.types[1].type.name);
           }
-            if(data.abilities.length == 3){
+            if(data.abilities.length === 3){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-            } else if(data.abilities.length == 2){
+            } else if(data.abilities.length === 2){
               fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
             } else { 
               fill.push(Caps(data.abilities[0].ability.name));
@@ -140,12 +140,12 @@ export default function Home() {
  
   
   function Next(){
-    if(countR == 897){
+    if(countR === 897){
       countR = 0;
     } else {
       countR = countR + 1;
     }
-    if(countL == 897){
+    if(countL === 897){
       countL = 0;
     } else {
       countL = countL + 1;
@@ -160,16 +160,16 @@ export default function Home() {
       } else (
         fill.push(data.sprites.front_default)
       )
-      if(data.types.length == 1){
+      if(data.types.length === 1){
         fill.push(data.types[0].type.name);
         fill.push("");
       } else {
         fill.push(data.types[0].type.name);
         fill.push(data.types[1].type.name);
     }
-      if(data.abilities.length == 3){
+      if(data.abilities.length === 3){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
+      } else if(data.abilities.length === 2){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
       } else { 
         fill.push(Caps(data.abilities[0].ability.name));
@@ -180,12 +180,12 @@ export default function Home() {
 }
 
 function Previous(){
-  if(countR == 0){
+  if(countR === 0){
     countR = 897;
   } else {
     countR = countR - 1;
   }
-  if(countL == 0){
+  if(countL === 0){
     countL = 897;
   } else {
     countL = countL - 1;
@@ -201,16 +201,16 @@ function Previous(){
       fill.push(data.sprites.front_default)
     )
     
-    if(data.types.length == 1){
+    if(data.types.length === 1){
       fill.push(data.types[0].type.name);
       fill.push("");
     } else {
       fill.push(data.types[0].type.name);
       fill.push(data.types[1].type.name);
   }
-    if(data.abilities.length == 3){
+    if(data.abilities.length === 3){
       fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-    } else if(data.abilities.length == 2){
+    } else if(data.abilities.length === 2){
       fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
     } else { 
       fill.push(Caps(data.abilities[0].ability.name));
@@ -222,10 +222,10 @@ function Previous(){
   
 function search(){
   if(pokeid != null){
-    if(pokeid == 898){
+    if(pokeid === 898){
       countR = 0;
       countL = 896;
-    } else if(pokeid == 1){
+    } else if(pokeid === 1){
       countR = 1;
       countL = 897;
     } else {
@@ -242,16 +242,16 @@ function search(){
         fill.push(data.sprites.front_default)
       )
       
-      if(data.types.length == 1){
+      if(data.types.length === 1){
         fill.push(data.types[0].type.name);
         fill.push("");
       } else {
         fill.push(data.types[0].type.name);
         fill.push(data.types[1].type.name);
     }
-      if(data.abilities.length == 3){
+      if(data.abilities.length === 3){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
+      } else if(data.abilities.length === 2){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
       } else { 
         fill.push(Caps(data.abilities[0].ability.name));
@@ -259,7 +259,7 @@ function search(){
       fill.push(data.id);
       setPokeA(fill);
     });
-    if(countR == 0){
+    if(countR === 0){
       current = pokeGrab(list[897].name);
     } else {
       current = pokeGrab(list[countR-1].name);
@@ -272,16 +272,16 @@ function search(){
         fill.push(data.sprites.front_default)
       )
       
-      if(data.types.length == 1){
+      if(data.types.length === 1){
         fill.push(data.types[0].type.name);
         fill.push("");
       } else {
         fill.push(data.types[0].type.name);
         fill.push(data.types[1].type.name);
     }
-      if(data.abilities.length == 3){
+      if(data.abilities.length === 3){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
+      } else if(data.abilities.length === 2){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
       } else { 
         fill.push(Caps(data.abilities[0].ability.name));
@@ -298,16 +298,16 @@ function search(){
         fill.push(data.sprites.front_default)
       )
       
-      if(data.types.length == 1){
+      if(data.types.length === 1){
         fill.push(data.types[0].type.name);
         fill.push("");
       } else {
         fill.push(data.types[0].type.name);
         fill.push(data.types[1].type.name);
     }
-      if(data.abilities.length == 3){
+      if(data.abilities.length === 3){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name), Caps(data.abilities[2].ability.name)].join(' / '));
-      } else if(data.abilities.length == 2){
+      } else if(data.abilities.length === 2){
         fill.push([Caps(data.abilities[0].ability.name),Caps(data.abilities[1].ability.name)].join(' / '));
       } else { 
         fill.push(Caps(data.abilities[0].ability.name));

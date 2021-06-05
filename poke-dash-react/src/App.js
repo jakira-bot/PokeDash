@@ -34,16 +34,16 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav className="navbar navbar-light bg-light justify-content-center">
+        <nav className="navbar justify-content-center">
           <ul className="navbar">
             <li className="nav-link">
-              <Link to="/">Home</Link>
+              <Link to="/" className="link">Home</Link>
             </li>
             <li className="nav-link">
-              <Link to="/map">Map</Link>
+              <Link to="/map" className="link">Map</Link>
             </li>
             <li className="nav-link">
-              <Link to="/Team-Builder">Team-Builder</Link>
+              <Link to="/Team-Builder" className="link">Team-Builder</Link>
             </li>
         {/* ////Stretch Goal////
             <li className="nav-link">
