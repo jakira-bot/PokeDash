@@ -12,6 +12,7 @@ export default function Search() {
   const [areaNames, setAreaNames] = useState('');
   const [areaInfo, setAreaInfo] = useState([]);
 
+  //function to scroll to the top when user clicks on the 'back to top' button
   const onClick = () => {
     window.scroll({
       top: 0,
@@ -39,6 +40,8 @@ export default function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokeEncounters])
 
+
+  //gets the info of selected region
   async function getRegion() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/region/${search}`);
@@ -51,6 +54,7 @@ export default function Search() {
     }
   }
 
+  //gets the areas of a location to display
   async function getAreas() {
     try {
       let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
@@ -82,6 +86,7 @@ export default function Search() {
     }
   }
 
+  //Creates an array of objects. Each object has an area name and the pokemon that can be encountered in the area
   async function getAreaInfo() {
     let info = [];
     //console.log(areaNames);
@@ -94,6 +99,7 @@ export default function Search() {
     setAreaInfo(info);
   }
 
+  //fetches info of each pokemon in an area to be used in getAreaInfo()
   async function getPokemonEncounters() {
     let list = [];
     //let pokeList = [];
@@ -126,6 +132,8 @@ export default function Search() {
     setPokeEncounters(list2);
   }
 
+  //Info that is displayed when the user selects a location. Displays each area name with info on pokemon that can be found in that area.
+  //Pokemon info includes name, image, types, and abilities. Displays "Area hasn't been added yet if location has no areas or pokemon according to api"
   function areaInformation() {
     // if(areaInfo.length > 0) {
     //   console.log(areaInfo[0].encounters[0].info.sprites.other['official-artwork'].front_default);
@@ -186,6 +194,7 @@ export default function Search() {
     }
   }
 
+  //Capitalizes the first letter of each word and returns it
   function capitalizeName(name) {
     let splitName = name.split('-');
     var upperName = [];
@@ -197,6 +206,7 @@ export default function Search() {
     return upperName.join(' ');
   }
   
+  //Returns the sprite url for the pokemon image element. If dreamworld sprite is unavailable, returns the official artwork url
   function getSprite(sprites) {
     if (sprites.other.dream_world.front_default) {
       return sprites.other.dream_world.front_default;
@@ -206,11 +216,13 @@ export default function Search() {
     }
   }
 
+  //do this when user selects a region from dropdown
   function handleChange(event) {
     //console.log(event.target.value);
     setSearch(event.target.value.toLowerCase());
   }
 
+  //do this when user selects a location
   function selectLocation(event) {
     //console.log(event.target.value);
     setLocation(event.target.value);
