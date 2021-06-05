@@ -1130,7 +1130,7 @@ export default function TeamBuilder(props) {
         <button type="button" className="randomizer grow-shadow" onClick={randomize1}>Randomize Team!</button>
       </div>
       <div className="tableContainer text-center">
-        <h2>Abilities</h2>
+        <h2 className="tableTitle">Abilities</h2>
         <table className="table vertical-align-center">
           <tbody>
             <tr>
