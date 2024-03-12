@@ -134,6 +134,7 @@ export default function Home() {
         }
         else {
             console.log( `Status Code: ${xhr.status} - ${xhr.statusText }`) ;
+            document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
         }
     };
   },[])

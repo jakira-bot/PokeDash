@@ -49,6 +49,7 @@ export default function Search() {
       setRegion(data);
     } catch (error) {
       console.log(error);
+      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
     }
   }
 
@@ -79,6 +80,7 @@ export default function Search() {
       }
     } catch (error) {
       console.error(error);
+      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
     }
   }
 
@@ -115,6 +117,7 @@ export default function Search() {
         list.push(data.pokemon_encounters);
       } catch (error) {
         console.log(error);
+        document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
       }
     }
 
