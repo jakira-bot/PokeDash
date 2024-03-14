@@ -47,10 +47,9 @@ export default function Search() {
       let response = await fetch(`https://pokeapi.co/api/v2/region/${search}`);
       let data = await response.json();
       setRegion(data);
-
-      //console.log(data);
     } catch (error) {
       console.log(error);
+      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
     }
   }
 
@@ -69,7 +68,6 @@ export default function Search() {
         });
       }
 
-      //console.log(areaList)
       if(data.areas && data.areas.length > 0) {
       setAreaUrls(urls);
       setAreas(data.areas);
@@ -80,50 +78,35 @@ export default function Search() {
         setAreas([]);
         setAreaNames([]);
       }
-      //console.log(data);
     } catch (error) {
       console.error(error);
+      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
     }
   }
 
   //Creates an array of objects. Each object has an area name and the pokemon that can be encountered in the area
   async function getAreaInfo() {
     let info = [];
-    //console.log(areaNames);
-    //console.log(pokeEncounters);
     for (let i = 0; i < areaNames.length; ++i) {
       let areaEncounters = {name: areaNames[i], encounters: pokeEncounters[i]};
       info.push(areaEncounters);
     }
-    //console.log(info);
     setAreaInfo(info);
   }
 
   //fetches info of each pokemon in an area to be used in getAreaInfo()
   async function getPokemonEncounters() {
     let list = [];
-    //let pokeList = [];
     let list2 = [];
     for (let i = 0; i < areaUrls.length; ++i) {
       try{
         let pokeList = [];
         let response = await fetch(areaUrls[i]);
         let data = await response.json();
-        //console.log(data)
-        // try{
-        //   let response1 = await fetch(data.encounter_method_rates[0].encounter_method.url);
-        //   let data1 = await response1.json();
-        //   console.log(data1)
-
-        // } catch (error) {
-        //   console.log(error);
-        // }
         for (let j = 0; j < data.pokemon_encounters.length; ++j) {
-          //console.log(data.pokemon_encounters[j].pokemon.url)
           try{
             let response2 = await fetch(data.pokemon_encounters[j].pokemon.url);
             let data2 = await response2.json();
-            //console.log(data2);
             let pokeInfo = {info: data2}
             pokeList.push(pokeInfo);
           } catch (error) {
@@ -134,6 +117,7 @@ export default function Search() {
         list.push(data.pokemon_encounters);
       } catch (error) {
         console.log(error);
+        document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
       }
     }
 
@@ -143,9 +127,6 @@ export default function Search() {
   //Info that is displayed when the user selects a location. Displays each area name with info on pokemon that can be found in that area.
   //Pokemon info includes name, image, types, and abilities. Displays "Area hasn't been added yet if location has no areas or pokemon according to api"
   function areaInformation() {
-    // if(areaInfo.length > 0) {
-    //   console.log(areaInfo[0].encounters[0].info)
-    // }
     if (pokeEncounters.length > 0) {
     return (
       areaInfo.map(area => 
@@ -238,13 +219,11 @@ export default function Search() {
 
   //do this when user selects a region from dropdown
   function handleChange(event) {
-    //console.log(event.target.value);
     setSearch(event.target.value.toLowerCase());
   }
 
   //do this when user selects a location
   function selectLocation(event) {
-    //console.log(event.target.value);
     setLocation(event.target.value);
   }
 

@@ -134,6 +134,7 @@ export default function Home() {
         }
         else {
             console.log( `Status Code: ${xhr.status} - ${xhr.statusText }`) ;
+            document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
         }
     };
   },[])
@@ -397,7 +398,6 @@ function keyStroke(stroke){
 async function pokeGrab(pname) {
   let partA = await fetch([search,pname].join(''));
   let partB = await partA.json();
-  //console.log(partB);
   return await partB;
 }
 
@@ -410,16 +410,11 @@ function pokeStart(num) {
   
   xhr.onload = () => {
       if ( xhr.status === 200) {
-          //console.log(xhr.response);
           for (const mon of xhr.response.results){
           }
           list = xhr.response.results;
-          //console.log(list);
           let current = pokeGrab(list[num].name);
           current = current.then( (data) => {
-            //let pic = document.createElement('img');
-            //pic.src = data.sprites.other.dream_world.front_default;
-            //pic.style.display = "block";
             return [data.name, data.sprites.other.dream_world.front_default]
           });
       }
