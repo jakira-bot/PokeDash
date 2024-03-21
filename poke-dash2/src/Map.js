@@ -1,5 +1,5 @@
-import './Map.css';
-import './Team-Builder.scss'
+import "./Map.css";
+import "./Team-Builder.scss";
 import { useState, useEffect } from "react";
 
 export default function Search() {
@@ -8,38 +8,39 @@ export default function Search() {
   const [location, setLocation] = useState("");
   const [areas, setAreas] = useState("");
   const [pokeEncounters, setPokeEncounters] = useState([]);
-  const [areaUrls, setAreaUrls] = useState('');
-  const [areaNames, setAreaNames] = useState('');
+  const [areaUrls, setAreaUrls] = useState("");
+  const [areaNames, setAreaNames] = useState("");
   const [areaInfo, setAreaInfo] = useState([]);
 
   //function to scroll to the top when user clicks on the 'back to top' button
   const onClick = () => {
     window.scroll({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-  }
+  };
 
+  //text box for entering region.
   useEffect(() => {
     getRegion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  //text box for entering specific location within a region.
   useEffect(() => {
     getAreas();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location])
+  }, [location]);
 
   useEffect(() => {
     getPokemonEncounters();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [areaUrls])
+  }, [areaUrls]);
 
   useEffect(() => {
     getAreaInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pokeEncounters])
-
+  }, [pokeEncounters]);
 
   //gets the info of selected region
   async function getRegion() {
@@ -49,65 +50,72 @@ export default function Search() {
       setRegion(data);
     } catch (error) {
       console.log(error);
-      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
+      document.getElementById("error").innerHTML +=
+        "Error, unable to reach: PokeApi";
     }
   }
 
   //gets the areas of a location to display
   async function getAreas() {
     try {
-      let response = await fetch(`https://pokeapi.co/api/v2/location/${location}`);
+      let response = await fetch(
+        `https://pokeapi.co/api/v2/location/${location}`
+      );
       let data = await response.json();
       let urls = [];
       let areaList = [];
 
-      if(data.areas){
-        data.areas.forEach(element => {
+      if (data.areas) {
+        data.areas.forEach((element) => {
           urls.push(element.url);
           areaList.push(element.name);
         });
       }
 
-      if(data.areas && data.areas.length > 0) {
-      setAreaUrls(urls);
-      setAreas(data.areas);
-      setAreaNames(areaList);
-      }
-      else if (data.areas){
+      if (data.areas && data.areas.length > 0) {
+        setAreaUrls(urls);
+        setAreas(data.areas);
+        setAreaNames(areaList);
+      } else if (data.areas) {
         setAreaUrls([]);
         setAreas([]);
         setAreaNames([]);
       }
     } catch (error) {
       console.error(error);
-      document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
+      document.getElementById("error").innerHTML +=
+        "Error, unable to reach: PokeApi";
     }
   }
 
-  //Creates an array of objects. Each object has an area name and the pokemon that can be encountered in the area
+  //Creates an array of objects.
+  //Each object has an area name and the pokemon that can be encountered in the area
   async function getAreaInfo() {
     let info = [];
     for (let i = 0; i < areaNames.length; ++i) {
-      let areaEncounters = {name: areaNames[i], encounters: pokeEncounters[i]};
+      let areaEncounters = {
+        name: areaNames[i],
+        encounters: pokeEncounters[i],
+      };
       info.push(areaEncounters);
     }
     setAreaInfo(info);
   }
 
-  //fetches info of each pokemon in an area to be used in getAreaInfo()
+  //Fetches info of each pokemon in an area to be used in getAreaInfo()
   async function getPokemonEncounters() {
     let list = [];
     let list2 = [];
     for (let i = 0; i < areaUrls.length; ++i) {
-      try{
+      try {
         let pokeList = [];
         let response = await fetch(areaUrls[i]);
         let data = await response.json();
         for (let j = 0; j < data.pokemon_encounters.length; ++j) {
-          try{
+          try {
             let response2 = await fetch(data.pokemon_encounters[j].pokemon.url);
             let data2 = await response2.json();
-            let pokeInfo = {info: data2}
+            let pokeInfo = { info: data2 };
             pokeList.push(pokeInfo);
           } catch (error) {
             console.log(error);
@@ -117,7 +125,8 @@ export default function Search() {
         list.push(data.pokemon_encounters);
       } catch (error) {
         console.log(error);
-        document.getElementById("error").innerHTML += 'Error, unable to reach: PokeApi';
+        document.getElementById("error").innerHTML +=
+          "Error, unable to reach: PokeApi";
       }
     }
 
@@ -128,92 +137,90 @@ export default function Search() {
   //Pokemon info includes name, image, types, and abilities. Displays "Area hasn't been added yet if location has no areas or pokemon according to api"
   function areaInformation() {
     if (pokeEncounters.length > 0) {
-    return (
-      areaInfo.map(area => 
+      return areaInfo.map((area) => (
         <div key={area.name}>
-          <h3 className='text-center area-header'>
+          <h3 className="text-center area-header">
             {capitalizeName(area.name)}
           </h3>
-          {area.encounters && (
-            area.encounters.map(pokemon =>
-              <div className='card' key={pokemon.info.name}>
-                <h4 className='d-flex justify-content-center' key={pokemon.info.name}>
-                {pokemon.info.name.charAt(0).toUpperCase() + pokemon.info.name.slice(1)}
+          {area.encounters &&
+            area.encounters.map((pokemon) => (
+              <div className="card" key={pokemon.info.name}>
+                <h4
+                  className="d-flex justify-content-center"
+                  key={pokemon.info.name}
+                >
+                  {pokemon.info.name.charAt(0).toUpperCase() +
+                    pokemon.info.name.slice(1)}
                 </h4>
-                <img className='d-flex justify-content-center' src={getSprite(pokemon.info.sprites)} alt={pokemon.info.name} width="200" height="200"></img>
-                <div className='d-flex justify-content-center types'>
-                  {
-                    pokemon.info.types.map(types => 
-                      <span className='type' title={types.type.name} key={types.type.name}>
-                        {types.type.name}
-                      </span>
-                    )
-                  }
+                <img
+                  className="d-flex justify-content-center"
+                  src={getSprite(pokemon.info.sprites)}
+                  alt={pokemon.info.name}
+                  width="200"
+                  height="200"
+                ></img>
+                <div className="d-flex justify-content-center types">
+                  {pokemon.info.types.map((types) => (
+                    <span
+                      className="type"
+                      title={types.type.name}
+                      key={types.type.name}
+                    >
+                      {types.type.name}
+                    </span>
+                  ))}
                 </div>
-                <div className='text-center'>
-                  <h5>
-                    Abilities:
-                  </h5>
-                  <div>
-                    {displayAbilities(pokemon.info.abilities)}
-                  </div>
+                <div className="text-center">
+                  <h5>Abilities:</h5>
+                  <div>{displayAbilities(pokemon.info.abilities)}</div>
                 </div>
                 <br></br>
               </div>
-              )
-            )
-          }
+            ))}
         </div>
-      )
-    )
-    }
-    else {
-      return (
-        <h1 className='text-center'>
-          Area Hasn't Been Added Yet!
-        </h1>
-      )
+      ));
+    } else {
+      return <h1 className="text-center">Area Hasn't Been Added Yet!</h1>;
     }
   }
 
   //displays abilities of pokemon.
   function displayAbilities(abilities) {
-    return (
-      abilities.map(ability => {
-        if (ability.is_hidden === false) {
+    return abilities.map((ability) => {
+      if (ability.is_hidden === false) {
         return (
-        <div key={ability.ability.name}>
-          {capitalizeName(ability.ability.name)}
-        </div>)}
-        else {
-          return (
-            <div key={ability.ability.name}>
-              {capitalizeName(ability.ability.name)} (Hidden)
-            </div>
-          )
-        }
-      }))
+          <div key={ability.ability.name}>
+            {capitalizeName(ability.ability.name)}
+          </div>
+        );
+      } else {
+        return (
+          <div key={ability.ability.name}>
+            {capitalizeName(ability.ability.name)} (Hidden)
+          </div>
+        );
+      }
+    });
   }
 
   //Capitalizes the first letter of each word and returns it
   function capitalizeName(name) {
-    let splitName = name.split('-');
+    let splitName = name.split("-");
     var upperName = [];
 
-    splitName.map(word =>
+    splitName.map((word) =>
       upperName.push(word[0].toUpperCase() + word.slice(1))
-    )
+    );
 
-    return upperName.join(' ');
+    return upperName.join(" ");
   }
-  
+
   //Returns the sprite url for the pokemon image element. If dreamworld sprite is unavailable, returns the official artwork url
   function getSprite(sprites) {
     if (sprites.other.dream_world.front_default) {
       return sprites.other.dream_world.front_default;
-    }
-    else {
-      return sprites.other['official-artwork'].front_default;
+    } else {
+      return sprites.other["official-artwork"].front_default;
     }
   }
 
@@ -229,48 +236,46 @@ export default function Search() {
 
   return (
     <>
-      <div className='map-background'>
+      <div className="map-background">
         <form className="text-center">
           <h1> Select a Region</h1>
-            <select id="search" onChange={handleChange}>
-              <option value="">Choose a Region</option>
-              <option value="kanto" >Kanto</option>
-              <option value="johto">Johto</option>
-              <option value="hoenn">Hoenn</option>
-              <option value="sinnoh">Sinnoh</option>
-              <option value="unova">Unova</option>
-              <option value="kalos">Kalos</option>
-              <option value="alola">Alola</option>
-            </select>
+          <select id="search" onChange={handleChange}>
+            <option value="">Choose a Region</option>
+            <option value="kanto">Kanto</option>
+            <option value="johto">Johto</option>
+            <option value="hoenn">Hoenn</option>
+            <option value="sinnoh">Sinnoh</option>
+            <option value="unova">Unova</option>
+            <option value="kalos">Kalos</option>
+            <option value="alola">Alola</option>
+          </select>
         </form>
         <br></br>
         {region.locations && (
-          <div className='text-center'>
+          <div className="text-center">
             <h2> Select a Location</h2>
             <select onChange={selectLocation}>
-            <option value="">Choose a Location</option>
-            {
-              region.locations.map((locations) => {
+              <option value="">Choose a Location</option>
+              {region.locations.map((locations) => {
                 return (
                   <option value={locations.name} key={`${locations.name}`}>
-                      {locations.name.replace('-', ' ')}
+                    {locations.name.replace("-", " ")}
                   </option>
                 );
-            })
-            }
-          </select>
-        </div>
-        )}
-        <br></br>
-        {areas && (
-          <div>
-            {
-              areaInformation()
-            }
+              })}
+            </select>
           </div>
         )}
+        <br></br>
+        {areas && <div>{areaInformation()}</div>}
         <div>
-          <button type="button" className="randomizer position-fixed bottom-0 end-0" onClick={onClick}>Back to Top</button>          
+          <button
+            type="button"
+            className="randomizer position-fixed bottom-0 end-0"
+            onClick={onClick}
+          >
+            Back to Top
+          </button>
         </div>
       </div>
     </>
