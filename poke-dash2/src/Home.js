@@ -4,6 +4,8 @@ import { useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, Button, CardGroup, ListGroup, Container, Row  } from 'react-bootstrap';
 
+document.getElementById("error").innerHTML = "";
+
 
 let url = 'https://pokeapi.co/api/v2/pokemon?limit=898",';
 let search = 'https://pokeapi.co/api/v2/pokemon/';
