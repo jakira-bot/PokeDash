@@ -127,8 +127,6 @@ export default function TeamBuilder(props) {
         });
     } catch (error) {
       console.log(error.message);
-      document.getElementById("error").innerHTML +=
-        "Error, unable to reach: PokeApi";
     }
   }
 
