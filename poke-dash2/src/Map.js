@@ -2,6 +2,8 @@ import "./Map.css";
 import "./Team-Builder.scss";
 import { useState, useEffect } from "react";
 
+document.getElementById("error").innerHTML = "";
+
 export default function Search() {
   const [region, setRegion] = useState("");
   const [search, setSearch] = useState("");

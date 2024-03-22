@@ -1,5 +1,6 @@
 import "./Team-Builder.scss";
 import { useEffect, useState } from "react";
+document.getElementById("error").innerHTML = "";
 
 export default function TeamBuilder(props) {
   const [pokemon1, setPokemon1] = useState(null);
